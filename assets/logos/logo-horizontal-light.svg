@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 210" width="960" height="210">
+<g transform="translate(90, 105) scale(0.28)">
+    <ellipse cx="0" cy="0" rx="230" ry="88" fill="none" stroke="#FFFFFF" stroke-width="17.857142857142854" transform="rotate(-18)"></ellipse>
+    <ellipse cx="0" cy="0" rx="230" ry="88" fill="none" stroke="#FFFFFF" stroke-width="17.857142857142854" transform="rotate(42)"></ellipse>
+    <ellipse cx="0" cy="0" rx="230" ry="88" fill="none" stroke="#FFFFFF" stroke-width="17.857142857142854" transform="rotate(-78)"></ellipse>
+    <circle cx="204.3" cy="-90.3" r="15" fill="#FFFFFF"></circle>
+    <circle cx="-178.6" cy="-140.2" r="15" fill="#FFFFFF"></circle>
+    <circle cx="-32.1" cy="224.7" r="15" fill="#FFFFFF"></circle>
+    <g transform="translate(0, 15)">
+      <path d="M 0,44 L-12,24 L-30,4 L-38,-10 L-40,-18 L40,-18 L38,-10 L30,4 L12,24 Z" fill="#FFFFFF"></path>
+      <path d="M-40,-18 L-44,-24 L44,-24 L40,-18 Z" fill="#FFFFFF"></path>
+      <path d="M-32,-24 L-28,-52 L-20,-58 L20,-58 L28,-52 L32,-24 Z" fill="#FFFFFF"></path>
+      <path d="M-17,-58 L-15,-66 L15,-66 L17,-58 Z" fill="#FFFFFF"></path>
+      <rect x="-2.2" y="-86" width="4.4" height="20" rx="1" fill="#FFFFFF"></rect>
+      <rect x="-18" y="-84" width="36" height="4.5" rx="2" fill="#FFFFFF"></rect>
+      <rect x="-1" y="-96" width="2" height="10" fill="#FFFFFF"></rect>
+      <line x1="-7" y1="-92" x2="7" y2="-92" stroke="#FFFFFF" stroke-width="7.142857142857142" stroke-linecap="round"></line>
+      <path d="M-55,36 Q-28,26 0,36 Q28,46 55,36" fill="none" stroke="#FFFFFF" stroke-width="10.714285714285714" stroke-linecap="round"></path>
+      <path d="M-42,48 Q-21,40 0,48 Q21,56 42,48" fill="none" stroke="#FFFFFF" stroke-width="7.857142857142857" stroke-linecap="round" opacity="0.4"></path>
+    </g>
+  </g>
+  <text x="195" y="118" font-family="&#39;Inter&#39;, &#39;Helvetica Neue&#39;, &#39;Arial&#39;, sans-serif" font-size="54" font-weight="300" letter-spacing="17" fill="#FFFFFF">ATOMARINE</text>
+</svg>

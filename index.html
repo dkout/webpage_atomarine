@@ -5,541 +5,933 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Atomarine deploys the LeadShip, a nuclear-powered vessel offshore, to supply zero-carbon propulsion power to merchant shipping fleets at sea.">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Atomarine – Maritime Energy Infrastructure">
+<meta property="og:title" content="Atomarine — Maritime Energy Infrastructure">
 <meta property="og:description" content="A new offshore energy architecture for deep-sea shipping. Zero-carbon propulsion power delivered at sea.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://atomarine.co">
-<title>Atomarine – Maritime Energy Infrastructure</title>
+<title>Atomarine — Maritime Energy Infrastructure</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preload" as="image" href="assets/photography/convoy-hero.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ============================================================
+     ATOMARINE design tokens — colours, type, space, motion.
+     Lifted from the official LeadShip renders:
+     abyssal navy + warm paper white + chrome-yellow + hull-teal.
+     ============================================================ */
   :root {
-    --navy: #0d2340;
-    --deep: #163354;
-    --steel: #2e5880;
-    --slate: #4a7fa5;
-    --mist: #8ba8bc;
-    --fog: #c8d8e4;
-    --pale: #edf3f7;
-    --white: #ffffff;
-    --ink: #0f1c2a;
-    --text: #253545;
-    --subtle: #5a7080;
-    --border: #d0dde6;
-    --accent: #1a4f82;
+    --abyss-900: #050B14;
+    --abyss-800: #081220;
+    --abyss-700: #0A1828;
+    --abyss-600: #0B1D33;
+    --abyss-500: #102A48;
+    --abyss-400: #1A3A5C;
+    --abyss-300: #2A4E72;
+
+    --paper-50:  #FCFBF6;
+    --paper-100: #F4F1E8;
+    --paper-200: #E8E3D4;
+    --paper-300: #CFC8B4;
+    --paper-400: #9A968A;
+    --paper-500: #6A675E;
+
+    --haze-200: #C7CDD3;
+
+    --yellow-500: #F5C518;
+    --yellow-600: #E0AE00;
+    --yellow-400: #FFD54A;
+    --yellow-ink: #1A1400;
+
+    --teal-500: #00B8C4;
+    --teal-600: #00939E;
+    --teal-400: #3DD4DE;
+
+    --bg:           var(--abyss-700);
+    --bg-elevated:  var(--abyss-600);
+    --bg-raised:    var(--abyss-500);
+    --bg-deep:      var(--abyss-900);
+    --bg-strip:     var(--abyss-800);
+
+    --fg:           var(--paper-100);
+    --fg-muted:     #A8B4C4;
+    --fg-subtle:    #6F8091;
+    --fg-disabled:  #4A5868;
+
+    --border:        var(--abyss-400);
+    --border-strong: #27466A;
+
+    --accent:        var(--yellow-500);
+    --accent-ink:    var(--yellow-ink);
+    --accent-2:      var(--teal-400);
+
+    --focus-ring: 0 0 0 2px rgba(0, 184, 196, 0.55);
+
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --track-tight:   -0.01em;
+    --track-display: -0.02em;
+    --track-wide:    0.08em;
+    --track-wider:   0.14em;
+    --track-brand:   0.32em;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --space-9: 96px;
+    --space-10: 128px;
+
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+    --dur-fast: 120ms;
+    --dur-base: 200ms;
+
+    --content-max: 1280px;
+    --page-margin: 48px;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+
+  /* ---------- Base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--bg); }
   body {
-    font-family: 'Georgia', serif;
-    color: var(--text);
-    background: var(--white);
-    line-height: 1.7;
-    font-size: 17px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--fg);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01";
   }
-  .sans { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--teal-400); text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease); }
+  a:hover { border-bottom-color: currentColor; }
+  ::selection { background: var(--yellow-500); color: var(--yellow-ink); }
+  :focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.96);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(8px);
-    padding: 0 5%;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
+  /* ---------- Type primitives ---------- */
+  .wordmark {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: var(--track-brand);
+    text-transform: uppercase;
+    color: var(--fg);
+    font-size: 13px;
   }
-  .nav-logo {
-    display: inline-flex; align-items: center; gap: 10px;
-    text-decoration: none; color: var(--navy);
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-wider);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    font-feature-settings: "tnum";
   }
-  .nav-logo svg { height: 28px; width: auto; }
-  .nav-logo span {
-    font-family: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px; font-weight: 300; letter-spacing: 0.32em;
-    text-transform: uppercase; color: var(--navy);
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-400);
+    margin-bottom: var(--space-5);
   }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 13px; letter-spacing: 0.06em; color: var(--subtle);
-    text-decoration: none; text-transform: uppercase;
-    transition: color 0.2s;
+  .kicker.yellow { color: var(--yellow-500); }
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: currentColor;
   }
-  .nav-links a:hover { color: var(--navy); }
-  .nav-toggle {
-    display: none; background: none; border: none; cursor: pointer;
-    padding: 8px; color: var(--navy);
-  }
-
-  /* SECTIONS */
-  section { padding: 100px 5%; }
-  .container { max-width: 1060px; margin: 0 auto; }
-
-  /* HERO */
-  #hero {
-    padding: 180px 5% 120px;
-    border-bottom: 1px solid var(--border);
-  }
-  .hero-label {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--slate); margin-bottom: 32px;
-  }
+  h1, h2, h3, h4 { color: var(--fg); margin: 0; text-wrap: balance; }
   h1 {
-    font-size: clamp(34px, 4.5vw, 58px);
-    font-weight: 400; line-height: 1.18;
-    color: var(--navy); letter-spacing: -0.02em;
-    max-width: 740px; margin-bottom: 24px;
-  }
-  .hero-sub {
-    font-size: clamp(16px, 1.8vw, 20px);
-    color: var(--slate); font-weight: 400;
-    margin-bottom: 32px; max-width: 560px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-  }
-  .hero-desc {
-    max-width: 600px; color: var(--subtle);
-    font-size: 16px; line-height: 1.85;
-    margin-bottom: 52px; font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-  }
-  .hero-desc p { margin-bottom: 6px; }
-  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
-    text-transform: uppercase; text-decoration: none;
-    padding: 13px 28px; border-radius: 2px;
-    transition: all 0.2s; cursor: pointer; display: inline-block;
-  }
-  .btn-primary {
-    background: var(--navy); color: var(--white);
-    border: 1px solid var(--navy);
-  }
-  .btn-primary:hover { background: var(--deep); }
-  .btn-outline {
-    background: transparent; color: var(--navy);
-    border: 1px solid var(--steel);
-  }
-  .btn-outline:hover { background: var(--pale); }
-
-  /* SECTION HEADINGS */
-  .section-label {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--mist); margin-bottom: 20px;
+    font-size: clamp(44px, 6.4vw, 84px);
+    font-weight: 200;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
   }
   h2 {
-    font-size: clamp(26px, 3vw, 40px);
-    font-weight: 400; color: var(--navy);
-    letter-spacing: -0.02em; line-height: 1.2;
-    margin-bottom: 36px;
+    font-size: clamp(32px, 3.6vw, 48px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: var(--track-display);
   }
   h3 {
-    font-size: 18px; font-weight: 600; color: var(--navy);
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    letter-spacing: -0.01em; margin-bottom: 12px;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: var(--track-tight);
+  }
+  h4 {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  p { margin: 0; }
+
+  .lede {
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--fg);
+    max-width: 58ch;
+  }
+  .body, p.body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    max-width: 64ch;
+  }
+  .caption { font-size: 13px; color: var(--fg-subtle); }
+
+  .hairline { border: 0; height: 1px; background: var(--border); margin: 0; }
+
+  /* ---------- Layout ---------- */
+  .section { max-width: var(--content-max); margin: 0 auto; padding: var(--space-10) var(--page-margin); }
+  .section-head { max-width: 760px; margin-bottom: var(--space-8); }
+  .section-head .lede { margin-top: var(--space-4); color: var(--fg-muted); }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.005em;
+    border-radius: var(--radius-sm);
+    padding: 13px 24px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background var(--dur-fast) var(--ease),
+                color var(--dur-fast) var(--ease),
+                border-color var(--dur-fast) var(--ease);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .btn-primary {
+    background: var(--yellow-500);
+    color: var(--yellow-ink);
+  }
+  .btn-primary:hover { background: var(--yellow-400); border-bottom-color: transparent; }
+  .btn-secondary {
+    background: transparent;
+    color: var(--fg);
+    border-color: var(--border-strong);
+  }
+  .btn-secondary:hover { border-color: var(--fg); border-bottom-color: var(--fg); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--teal-400);
+    border-radius: 0;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--teal-400);
+  }
+  .btn-ghost:hover { color: var(--teal-400); border-bottom-color: var(--teal-400); }
+  .arrow { font-family: var(--font-mono); font-size: 13px; opacity: 0.85; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 30;
+    background: rgba(10, 24, 40, 0.78);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    height: 72px;
+    padding: 0 var(--page-margin);
+    display: flex; align-items: center; gap: 40px;
+  }
+  .nav-brand {
+    display: inline-flex; align-items: center; gap: 14px;
+    color: var(--fg); border-bottom: 0;
+  }
+  .nav-brand:hover { border-bottom: 0; }
+  .nav-brand img { height: 24px; width: auto; }
+  .nav-links { display: flex; gap: 28px; list-style: none; padding: 0; margin: 0; }
+  .nav-links a {
+    font-size: 13px; color: var(--fg-muted);
+    border-bottom: 0; letter-spacing: 0.01em;
+    padding: 6px 0;
+  }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-right {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .nav-status {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: var(--track-wider);
+    color: var(--teal-400);
+    text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .nav-status .dot {
+    width: 7px; height: 7px; border-radius: 999px;
+    background: var(--teal-400);
+    box-shadow: 0 0 10px var(--teal-400);
+  }
+  .nav-toggle {
+    display: none;
+    background: transparent; border: 0;
+    color: var(--fg); cursor: pointer; padding: 8px;
   }
 
-  /* RULE DIVIDER */
-  .rule { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-  /* CHALLENGE SECTION */
-  #challenge { background: var(--pale); }
-  .bullet-list {
-    list-style: none; margin: 0 0 40px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  /* ---------- Hero (full-bleed photography + scrim) ---------- */
+  #hero {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 72px);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--border);
   }
+  .hero-media {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  .hero-media img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
+  .hero-scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(90deg,
+        rgba(10,24,40,0.92) 0%,
+        rgba(10,24,40,0.72) 38%,
+        rgba(10,24,40,0.30) 72%,
+        rgba(10,24,40,0)    100%),
+      linear-gradient(180deg,
+        rgba(10,24,40,0.55) 0%,
+        rgba(10,24,40,0)    28%,
+        rgba(10,24,40,0)    65%,
+        rgba(5,11,20,0.85)  100%);
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: var(--content-max);
+    width: 100%;
+    margin: 0 auto;
+    padding: 140px var(--page-margin) 96px;
+  }
+  .hero-content { max-width: 720px; }
+  .hero-sub {
+    font-size: clamp(18px, 1.6vw, 22px);
+    font-weight: 300;
+    color: var(--fg);
+    margin: 8px 0 28px;
+    max-width: 56ch;
+  }
+  .hero-desc {
+    color: var(--fg-muted);
+    font-size: 15.5px;
+    line-height: 1.7;
+    max-width: 56ch;
+    margin-bottom: 44px;
+  }
+  .hero-desc p + p { margin-top: 6px; }
+  .cta-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+  .hero-corner {
+    position: absolute; right: var(--page-margin); bottom: 24px; z-index: 2;
+    display: flex; gap: 18px; align-items: center;
+  }
+  .hero-corner .mono.yellow { color: var(--yellow-500); }
+
+  /* ---------- Live strip / fact bar ---------- */
+  .strip {
+    background: var(--bg-strip);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .strip-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 22px var(--page-margin);
+    display: flex; flex-wrap: wrap; gap: 48px;
+  }
+  .strip-cell { display: flex; flex-direction: column; gap: 6px; }
+  .strip-val {
+    font-family: var(--font-mono);
+    font-size: 14px; letter-spacing: 0.04em;
+    color: var(--fg);
+  }
+  .strip-val.yellow { color: var(--yellow-500); }
+  .strip-val.teal   { color: var(--teal-400); }
+  .strip-val .dot {
+    display: inline-block; width: 7px; height: 7px;
+    background: currentColor; border-radius: 999px;
+    box-shadow: 0 0 10px currentColor;
+    margin-right: 8px; vertical-align: middle;
+  }
+
+  /* ---------- Challenge ---------- */
+  #challenge { background: var(--bg); }
+  .bullet-list { list-style: none; margin: 0; padding: 0; max-width: 880px; }
   .bullet-list li {
-    padding: 16px 0; border-bottom: 1px solid var(--border);
-    font-size: 16px; color: var(--text);
-    display: flex; align-items: flex-start; gap: 16px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.5;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+    align-items: start;
   }
   .bullet-list li:first-child { border-top: 1px solid var(--border); }
-  .bullet-list li::before {
-    content: ''; display: inline-block;
-    width: 4px; height: 4px; border-radius: 50%;
-    background: var(--slate); flex-shrink: 0;
-    margin-top: 9px;
+  .bullet-list .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-wider);
+    color: var(--yellow-500);
+    text-transform: uppercase;
+    padding-top: 4px;
   }
   .conclusion {
-    font-size: 18px; color: var(--navy);
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-style: italic; padding-left: 24px;
-    border-left: 2px solid var(--steel);
+    margin-top: var(--space-7);
+    font-size: 22px; font-weight: 300; line-height: 1.4;
+    color: var(--fg);
+    padding-left: var(--space-5);
+    border-left: 1px solid var(--yellow-500);
+    max-width: 60ch;
   }
 
-  /* DIAGRAM SECTION */
-  #model { background: var(--white); }
+  /* ---------- Model ---------- */
+  #model { background: var(--bg-strip); }
   .diagram-wrap {
-    border-radius: 6px;
-    margin: 48px 0;
+    margin: var(--space-8) 0 var(--space-7);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
     overflow: hidden;
+    background: var(--bg-deep);
   }
   .diagram-wrap img {
     width: 100%; height: auto; display: block;
-    border-radius: 6px;
+  }
+  .diagram-cap {
+    display: flex; gap: 14px; align-items: center;
+    margin-top: var(--space-4);
   }
 
   .key-points {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px; margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: var(--space-7);
   }
   .key-point {
-    border-top: 2px solid var(--fog);
-    padding-top: 20px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-strip);
+    padding: 28px 28px 32px;
+    display: flex; flex-direction: column; gap: 10px;
   }
-  .key-point strong {
-    display: block; font-size: 14px; font-weight: 600;
-    color: var(--navy); margin-bottom: 6px; letter-spacing: 0.02em;
+  .key-point .num {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: var(--track-wider); text-transform: uppercase;
+    color: var(--yellow-500);
   }
-  .key-point span { font-size: 14px; color: var(--subtle); }
+  .key-point h4 { font-size: 16px; font-weight: 500; color: var(--fg); }
+  .key-point p { font-size: 14px; color: var(--fg-muted); line-height: 1.6; }
 
-  /* TECHNOLOGY */
-  #technology { background: var(--pale); }
+  /* ---------- Technology ---------- */
+  #technology { background: var(--bg); }
   .tech-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border); margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: var(--space-7);
   }
   .tech-item {
-    background: var(--white); padding: 32px 28px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-elevated);
+    padding: 36px 32px;
+    display: flex; flex-direction: column; gap: 12px;
   }
-  .tech-num {
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--mist); margin-bottom: 14px;
+  .tech-item .num {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: var(--track-wider); text-transform: uppercase;
+    color: var(--yellow-500);
   }
-  .tech-item h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-  .tech-item p { font-size: 14px; color: var(--subtle); line-height: 1.6; }
+  .tech-item h4 { font-size: 16px; font-weight: 500; color: var(--fg); }
+  .tech-item p  { font-size: 14px; color: var(--fg-muted); line-height: 1.6; }
 
-  /* AUDIENCE */
-  #audience { background: var(--white); }
+  /* ---------- Audience ---------- */
+  #audience { background: var(--bg-strip); }
   .audience-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2px; background: var(--border);
-    border: 1px solid var(--border); margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: var(--space-7);
   }
   .audience-card {
-    background: var(--white); padding: 44px 36px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    padding: 44px 36px;
+    display: flex; flex-direction: column;
   }
-  .audience-card h3 { font-size: 20px; margin-bottom: 8px; }
-  .aud-sub { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--mist); margin-bottom: 28px; }
-  .aud-list { list-style: none; margin-bottom: 36px; }
+  .audience-card .mono { color: var(--teal-400); margin-bottom: 16px; }
+  .audience-card h3 {
+    font-size: 24px; font-weight: 300;
+    letter-spacing: var(--track-display);
+    margin-bottom: 24px;
+  }
+  .aud-list { list-style: none; margin: 0 0 32px; padding: 0; flex: 1; }
   .aud-list li {
-    font-size: 15px; color: var(--subtle); padding: 9px 0;
-    border-bottom: 1px solid var(--pale);
-    padding-left: 16px; position: relative;
+    font-size: 14.5px;
+    color: var(--fg-muted);
+    padding: 11px 0 11px 18px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    line-height: 1.5;
   }
   .aud-list li::before {
-    content: '·'; position: absolute; left: 0;
-    color: var(--fog);
+    content: "";
+    position: absolute; left: 0; top: 19px;
+    width: 8px; height: 1px;
+    background: var(--yellow-500);
   }
+  .audience-card .btn { align-self: flex-start; }
 
-  /* SAFETY */
-  #safety { background: var(--pale); }
+  /* ---------- Safety ---------- */
+  #safety { background: var(--bg); }
   .safety-inner {
-    max-width: 680px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 17px; color: var(--text); line-height: 1.85;
+    max-width: 720px;
+    color: var(--fg);
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 300;
   }
+  .safety-inner p + p { margin-top: var(--space-5); }
+  .safety-inner p { color: var(--fg); }
+  .safety-inner p:last-child { color: var(--fg-muted); }
 
-  /* FOCUS */
-  #focus { background: var(--navy); }
-  #focus .section-label { color: var(--slate); }
-  #focus h2 { color: var(--white); }
+  /* ---------- Focus ---------- */
+  #focus { background: var(--bg-deep); }
   .focus-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1px; background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.08);
-    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: var(--space-7);
   }
   .focus-item {
-    background: var(--navy); padding: 36px 28px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.2s;
+    background: var(--bg-deep);
+    padding: 36px 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur-base) var(--ease);
   }
-  .focus-item:hover { border-bottom-color: var(--slate); }
-  .focus-num { font-size: 11px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--steel); margin-bottom: 16px; }
-  .focus-item p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+  .focus-item:hover { border-bottom-color: var(--teal-400); }
+  .focus-item .num {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: var(--track-wider); text-transform: uppercase;
+    color: var(--yellow-500);
+  }
+  .focus-item p { font-size: 14.5px; color: var(--fg-muted); line-height: 1.55; }
 
-  /* CONTACT */
-  #contact { background: var(--white); }
-  .contact-block {
-    max-width: 600px;
+  /* ---------- Contact (with photo background) ---------- */
+  #contact {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
   }
+  .contact-bg {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    opacity: 0.45;
+  }
+  .contact-scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(90deg, rgba(5,11,20,0.94) 0%, rgba(5,11,20,0.78) 60%, rgba(5,11,20,0.45) 100%);
+  }
+  .contact-inner {
+    position: relative; z-index: 2;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: var(--space-10) var(--page-margin);
+  }
+  .contact-block { max-width: 640px; }
   .contact-intro {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px; color: var(--subtle); line-height: 1.85;
-    margin-top: 24px; margin-bottom: 40px;
+    color: var(--fg);
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 300;
+    margin: var(--space-4) 0 var(--space-7);
+    max-width: 56ch;
   }
   .contact-email {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 20px; color: var(--navy); font-weight: 600;
-    text-decoration: none; letter-spacing: -0.01em;
-    padding: 20px 0; border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border); width: 100%;
-    transition: color 0.2s;
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--font-sans);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--yellow-500);
+    letter-spacing: -0.005em;
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    transition: color var(--dur-fast) var(--ease);
+    border-bottom: 1px solid var(--border);
   }
-  .contact-email:hover { color: var(--steel); }
+  .contact-email:hover { color: var(--yellow-400); border-bottom-color: var(--yellow-500); }
   .contact-email svg { flex-shrink: 0; }
   .contact-channels {
-    margin-top: 32px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14px; color: var(--mist); line-height: 1.7;
+    margin-top: var(--space-5);
+    color: var(--fg-muted);
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 52ch;
   }
 
-  /* FOOTER */
+  /* ---------- Footer ---------- */
   footer {
-    background: var(--ink); color: rgba(255,255,255,0.45);
-    padding: 40px 5%;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 13px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
+    background: var(--bg-strip);
+    border-top: 1px solid var(--border);
+    color: var(--fg-muted);
   }
-  footer strong { color: rgba(255,255,255,0.7); letter-spacing: 0.08em; }
-  .footer-brand { display: inline-flex; align-items: center; gap: 10px; }
-  .footer-brand svg { height: 22px; width: auto; opacity: 0.5; }
+  .footer-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: var(--space-7) var(--page-margin) var(--space-5);
+    display: flex; flex-wrap: wrap; gap: 24px;
+    justify-content: space-between; align-items: center;
+  }
+  .footer-brand {
+    display: inline-flex; align-items: center; gap: 14px;
+    color: var(--fg);
+  }
+  .footer-brand img { height: 22px; width: auto; opacity: 0.95; }
+  .footer-base {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 18px var(--page-margin);
+    border-top: 1px solid var(--border);
+    display: flex; gap: 24px; flex-wrap: wrap; justify-content: space-between;
+  }
 
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    :root { --page-margin: 24px; }
+    .nav-status { display: none; }
+    .nav-links { gap: 18px; }
+    .strip-inner { gap: 28px; padding: 18px var(--page-margin); }
+    .hero-corner { display: none; }
+    .section { padding: 80px var(--page-margin); }
+    h1 { font-size: clamp(40px, 8vw, 60px); }
+    h2 { font-size: clamp(28px, 5vw, 36px); }
+  }
   @media (max-width: 700px) {
-    .nav-toggle { display: block; }
-    nav .nav-links {
-      display: none; flex-direction: column; gap: 0;
-      position: absolute; top: 64px; left: 0; right: 0;
-      background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--border);
-      padding: 12px 5%;
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      display: none; flex-direction: column;
+      position: absolute; top: 72px; left: 0; right: 0;
+      background: rgba(10,24,40,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px var(--page-margin);
+      gap: 0;
     }
-    nav .nav-links.open { display: flex; }
-    nav .nav-links a { padding: 12px 0; display: block; font-size: 14px; }
-    section { padding: 72px 6%; }
-    #hero { padding: 120px 6% 80px; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 14px 0; font-size: 15px; }
+    .nav-right .btn-secondary { padding: 11px 18px; font-size: 13px; }
+    .hero-inner { padding-top: 96px; padding-bottom: 80px; }
+    .hero-sub { font-size: 17px; }
+    .cta-row .btn { width: 100%; justify-content: center; }
+    .bullet-list li { grid-template-columns: 48px 1fr; }
+    .conclusion { font-size: 19px; }
+    .contact-email { font-size: 18px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ============ NAV ============ -->
 <nav>
-  <a href="#hero" class="nav-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128"><g transform="translate(64, 64)"><g fill="#0B1D33" stroke="#0B1D33"><ellipse cx="0" cy="0" rx="52" ry="20" fill="none" stroke-width="3.5" transform="rotate(-18)"/><ellipse cx="0" cy="0" rx="52" ry="20" fill="none" stroke-width="3.5" transform="rotate(42)"/><ellipse cx="0" cy="0" rx="52" ry="20" fill="none" stroke-width="3.5" transform="rotate(-78)"/><circle cx="0" cy="3" r="10" stroke="none"/><circle cx="46.2" cy="-20.4" r="5.5" stroke="none"/><circle cx="-40.4" cy="-31.7" r="5.5" stroke="none"/><circle cx="-7.3" cy="50.8" r="5.5" stroke="none"/></g></g></svg>
-    <span>Atomarine</span>
-  </a>
-  <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-  </button>
-  <ul class="nav-links sans">
-    <li><a href="#challenge" onclick="this.closest('.nav-links').classList.remove('open')">The Problem</a></li>
-    <li><a href="#model" onclick="this.closest('.nav-links').classList.remove('open')">Our Model</a></li>
-    <li><a href="#audience" onclick="this.closest('.nav-links').classList.remove('open')">Partnerships</a></li>
-    <li><a href="#contact" onclick="this.closest('.nav-links').classList.remove('open')">Engage</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand" aria-label="Atomarine — home">
+      <img src="assets/logos/symbol-small-light.svg" alt="">
+      <span class="wordmark">Atomarine</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#challenge" onclick="document.getElementById('navLinks').classList.remove('open')">Problem</a></li>
+      <li><a href="#model"     onclick="document.getElementById('navLinks').classList.remove('open')">Architecture</a></li>
+      <li><a href="#technology" onclick="document.getElementById('navLinks').classList.remove('open')">Technology</a></li>
+      <li><a href="#audience"  onclick="document.getElementById('navLinks').classList.remove('open')">Partnerships</a></li>
+      <li><a href="#contact"   onclick="document.getElementById('navLinks').classList.remove('open')">Engage</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-status"><span class="dot"></span>Pre-seed · Cambridge, MA</span>
+      <a href="#contact" class="btn btn-secondary">Request a briefing</a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- ============ HERO ============ -->
 <section id="hero">
-  <div class="container">
-    <p class="hero-label sans">Maritime Energy Infrastructure</p>
-    <h1>Zero-Carbon Maritime Energy Infrastructure</h1>
-    <p class="hero-sub sans">A new offshore energy architecture for deep-sea shipping.</p>
-    <div class="hero-desc sans">
-      <p>Atomarine centralizes clean energy generation in the LeadShip, a dedicated offshore vessel, and supplies propulsion power to multiple merchant ships at sea.</p>
-      <p>No onboard nuclear systems for cargo vessels. No fuel switching across the fleet.</p>
-      <p>A scalable pathway to zero-carbon long-haul shipping.</p>
+  <div class="hero-media">
+    <img src="assets/photography/convoy-hero.png" alt="Atomarine LeadShip delivering propulsion power to a container-ship convoy via dynamic high-voltage cables">
+    <div class="hero-scrim"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="kicker yellow">Maritime Energy Infrastructure</div>
+      <h1>Zero-Carbon Maritime Energy Infrastructure</h1>
+      <p class="hero-sub">A new offshore energy architecture for deep-sea shipping.</p>
+      <div class="hero-desc">
+        <p>Atomarine centralizes clean energy generation in the LeadShip, a dedicated offshore vessel, and supplies propulsion power to multiple merchant ships at sea.</p>
+        <p>No onboard nuclear systems for cargo vessels. No fuel switching across the fleet.</p>
+        <p>A scalable pathway to zero-carbon long-haul shipping.</p>
+      </div>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Explore industry partnership <span class="arrow">→</span></a>
+        <a href="#audience" class="btn btn-ghost">Government engagement</a>
+        <a href="#audience" class="btn btn-ghost">Investor briefing</a>
+      </div>
     </div>
-    <div class="cta-row">
-      <a href="#contact" class="btn btn-primary sans">Explore Industry Partnership</a>
-      <a href="#audience" class="btn btn-outline sans">Government Engagement</a>
-      <a href="#audience" class="btn btn-outline sans">Investor Briefing</a>
+  </div>
+
+  <div class="hero-corner">
+    <span class="mono yellow">FIG. A.01</span>
+    <span class="mono">CONVOY RENDEZVOUS · INTERNATIONAL WATERS</span>
+  </div>
+</section>
+
+<!-- ============ STRIP ============ -->
+<section class="strip" aria-label="Reference figures">
+  <div class="strip-inner">
+    <div class="strip-cell">
+      <span class="mono">LeadShip output</span>
+      <span class="strip-val yellow"><span class="dot"></span>1,200 MW</span>
+    </div>
+    <div class="strip-cell">
+      <span class="mono">Convoy size</span>
+      <span class="strip-val teal">2 – 5 vessels</span>
+    </div>
+    <div class="strip-cell">
+      <span class="mono">Cruising</span>
+      <span class="strip-val">15+ kts</span>
+    </div>
+    <div class="strip-cell">
+      <span class="mono">Voyage under nuclear power</span>
+      <span class="strip-val">99 %</span>
+    </div>
+    <div class="strip-cell">
+      <span class="mono">Design life</span>
+      <span class="strip-val">60 yr</span>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- CHALLENGE -->
-<section id="challenge">
-  <div class="container">
-    <p class="section-label sans">Context</p>
-    <h2>Shipping Faces a Structural Energy Problem</h2>
-    <ul class="bullet-list sans">
-      <li>Fuel is the largest and most volatile operating cost in deep-sea shipping</li>
-      <li>Carbon pricing is accelerating globally, with direct implications for fleet economics</li>
-      <li>Slow steaming reduces revenue and limits schedule flexibility across trade corridors</li>
-      <li>Alternative fuels introduce new infrastructure dependencies without resolving the core problem</li>
-    </ul>
-    <p class="conclusion sans">The industry lacks a structural energy solution.</p>
+<!-- ============ CHALLENGE ============ -->
+<section id="challenge" class="section">
+  <div class="section-head">
+    <div class="kicker">Context</div>
+    <h2>Shipping faces a structural energy problem.</h2>
   </div>
+  <ul class="bullet-list">
+    <li><span class="num">01</span><span>Fuel is the largest and most volatile operating cost in deep-sea shipping.</span></li>
+    <li><span class="num">02</span><span>Carbon pricing is accelerating globally, with direct implications for fleet economics.</span></li>
+    <li><span class="num">03</span><span>Slow steaming reduces revenue and limits schedule flexibility across trade corridors.</span></li>
+    <li><span class="num">04</span><span>Alternative fuels introduce new infrastructure dependencies without resolving the core problem.</span></li>
+  </ul>
+  <p class="conclusion">The industry lacks a structural energy solution.</p>
 </section>
 
-<hr class="rule">
-
-<!-- MODEL -->
-<section id="model">
-  <div class="container">
-    <p class="section-label sans">Architecture</p>
-    <h2>A New Energy Architecture</h2>
-    <p class="sans" style="font-size:16px;color:var(--subtle);max-width:620px;margin-bottom:8px;">Atomarine deploys the LeadShip, a dedicated nuclear-powered vessel operating in international waters. Merchant vessels connect offshore and receive propulsion power without carrying nuclear systems onboard.</p>
-
-    <!-- Concept visualisation -->
-    <div class="diagram-wrap">
-      <img src="assets/concept.jpg" alt="Atomarine LeadShip supplying propulsion power to multiple merchant ships at sea via dynamic cable connections" loading="lazy">
-    </div>
-
-    <div class="key-points">
-      <div class="key-point">
-        <strong>Zero carbon propulsion</strong>
-        <span>During connection, merchant vessels operate on clean electrical power with no combustion emissions.</span>
-      </div>
-      <div class="key-point">
-        <strong>Fleet compatibility</strong>
-        <span>Hybrid PTO/PTI retrofit enables existing vessels to participate without full redesign.</span>
-      </div>
-      <div class="key-point">
-        <strong>Solving regulatory roadblocks</strong>
-        <span>The LeadShip operates in international waters, reducing port integration complexity.</span>
-      </div>
-      <div class="key-point">
-        <strong>Economies of scale</strong>
-        <span>A single LeadShip can serve multiple vessels across a corridor, compounding utilization economics.</span>
-      </div>
-    </div>
+<!-- ============ MODEL ============ -->
+<section id="model" class="section">
+  <div class="section-head">
+    <div class="kicker">Architecture</div>
+    <h2>A new energy architecture.</h2>
+    <p class="lede">Atomarine deploys the LeadShip, a dedicated nuclear-powered vessel operating in international waters. Merchant vessels connect offshore and receive propulsion power without carrying nuclear systems onboard.</p>
   </div>
-</section>
 
-<hr class="rule">
+  <div class="diagram-wrap">
+    <img src="assets/concept.jpg" alt="Atomarine LeadShip supplying propulsion power to multiple merchant ships at sea via dynamic cable connections" loading="lazy">
+  </div>
+  <div class="diagram-cap">
+    <span class="mono" style="color: var(--yellow-500);">FIG. B.01</span>
+    <span class="mono">Hub-and-spoke offshore power transfer</span>
+  </div>
 
-<!-- TECHNOLOGY -->
-<section id="technology">
-  <div class="container">
-    <p class="section-label sans">Foundation</p>
-    <h2>Built on Established Industrial Technologies</h2>
-    <p class="sans" style="font-size:16px;color:var(--subtle);max-width:580px;">The Atomarine model is assembled from proven industrial components. No single element requires first-of-kind development.</p>
-    <div class="tech-grid">
-      <div class="tech-item">
-        <p class="tech-num sans">01</p>
-        <h4>Gen III+ Pressurized Water Reactor</h4>
-        <p>Mature reactor technology with established regulatory precedent and decades of operational data across commercial and naval applications.</p>
-      </div>
-      <div class="tech-item">
-        <p class="tech-num sans">02</p>
-        <h4>Offshore Dynamic Cable Systems</h4>
-        <p>Dynamic power cable technology with extensive deployment history in offshore wind and subsea industrial installations.</p>
-      </div>
-      <div class="tech-item">
-        <p class="tech-num sans">03</p>
-        <h4>Hybrid PTO/PTI Integration</h4>
-        <p>Power take-out / power take-in shaft systems are a standard component of modern hybrid marine propulsion architectures.</p>
-      </div>
-      <div class="tech-item">
-        <p class="tech-num sans">04</p>
-        <h4>Naval Nuclear Operations</h4>
-        <p>Decades of operational experience in naval nuclear propulsion provide a robust baseline for offshore marine reactor management.</p>
-      </div>
+  <div class="key-points">
+    <div class="key-point">
+      <span class="num">— 01</span>
+      <h4>Zero-carbon propulsion</h4>
+      <p>During connection, merchant vessels operate on clean electrical power with no combustion emissions.</p>
+    </div>
+    <div class="key-point">
+      <span class="num">— 02</span>
+      <h4>Fleet compatibility</h4>
+      <p>Hybrid PTO/PTI retrofit enables existing vessels to participate without full redesign.</p>
+    </div>
+    <div class="key-point">
+      <span class="num">— 03</span>
+      <h4>Solving regulatory roadblocks</h4>
+      <p>The LeadShip operates in international waters, reducing port integration complexity.</p>
+    </div>
+    <div class="key-point">
+      <span class="num">— 04</span>
+      <h4>Economies of scale</h4>
+      <p>A single LeadShip can serve multiple vessels across a corridor, compounding utilization economics.</p>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- AUDIENCE -->
-<section id="audience">
-  <div class="container">
-    <p class="section-label sans">Partnerships</p>
-    <h2>Who It's For</h2>
-    <div class="audience-grid">
-      <div class="audience-card">
-        <p class="aud-sub sans">Sector</p>
-        <h3>Shipping Companies</h3>
-        <ul class="aud-list sans">
-          <li>Reduce fuel cost volatility across the fleet</li>
-          <li>Manage carbon exposure ahead of pricing escalation</li>
-          <li>Restore speed flexibility without fuel cost penalty</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary sans" style="font-size:12px;padding:11px 22px;">Discuss Pilot Corridor</a>
-      </div>
-      <div class="audience-card">
-        <p class="aud-sub sans">Sector</p>
-        <h3>Governments</h3>
-        <ul class="aud-list sans">
-          <li>Strategic decarbonization corridor infrastructure</li>
-          <li>Energy independence from fossil fuel imports</li>
-          <li>Industrial leadership in maritime energy transition</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary sans" style="font-size:12px;padding:11px 22px;">Initiate Strategic Dialogue</a>
-      </div>
-      <div class="audience-card">
-        <p class="aud-sub sans">Sector</p>
-        <h3>Investors</h3>
-        <ul class="aud-list sans">
-          <li>Infrastructure-scale asset with contracted revenue structure</li>
-          <li>Long-term energy service agreements with creditworthy counterparties</li>
-          <li>First-mover positioning in a structurally undersolved market</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary sans" style="font-size:12px;padding:11px 22px;">Request Investment Overview</a>
-      </div>
+<!-- ============ TECHNOLOGY ============ -->
+<section id="technology" class="section">
+  <div class="section-head">
+    <div class="kicker">Foundation</div>
+    <h2>Built on established industrial technologies.</h2>
+    <p class="lede">The Atomarine model is assembled from proven industrial components. No single element requires first-of-kind development.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item">
+      <span class="num">01</span>
+      <h4>Gen III+ Pressurized Water Reactor</h4>
+      <p>Mature reactor technology with established regulatory precedent and decades of operational data across commercial and naval applications.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">02</span>
+      <h4>Offshore Dynamic Cable Systems</h4>
+      <p>Dynamic power cable technology with extensive deployment history in offshore wind and subsea industrial installations.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">03</span>
+      <h4>Hybrid PTO/PTI Integration</h4>
+      <p>Power take-out / power take-in shaft systems are a standard component of modern hybrid marine propulsion architectures.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">04</span>
+      <h4>Naval Nuclear Operations</h4>
+      <p>Decades of operational experience in naval nuclear propulsion provide a robust baseline for offshore marine reactor management.</p>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- SAFETY -->
-<section id="safety">
-  <div class="container">
-    <p class="section-label sans">Governance</p>
-    <h2>Safety and Regulatory Engagement First</h2>
-    <div class="safety-inner sans">
-      <p style="margin-bottom:24px;">Atomarine is designed around phased validation, structured regulatory engagement, and early insurance dialogue. Each development stage is gated on prior-stage confirmation — technical, institutional, and commercial.</p>
-      <p>The offshore operating model reduces port integration complexity while maintaining institutional oversight at every level. We engage regulators as partners, not obstacles, and we structure our development timeline to reflect that commitment.</p>
+<!-- ============ AUDIENCE ============ -->
+<section id="audience" class="section">
+  <div class="section-head">
+    <div class="kicker">Partnerships</div>
+    <h2>Who it's for.</h2>
+  </div>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <span class="mono">Sector · 01</span>
+      <h3>Shipping companies</h3>
+      <ul class="aud-list">
+        <li>Reduce fuel cost volatility across the fleet.</li>
+        <li>Manage carbon exposure ahead of pricing escalation.</li>
+        <li>Restore speed flexibility without fuel cost penalty.</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Discuss pilot corridor</a>
+    </div>
+    <div class="audience-card">
+      <span class="mono">Sector · 02</span>
+      <h3>Governments</h3>
+      <ul class="aud-list">
+        <li>Strategic decarbonization corridor infrastructure.</li>
+        <li>Energy independence from fossil fuel imports.</li>
+        <li>Industrial leadership in maritime energy transition.</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Initiate strategic dialogue</a>
+    </div>
+    <div class="audience-card">
+      <span class="mono">Sector · 03</span>
+      <h3>Investors</h3>
+      <ul class="aud-list">
+        <li>Infrastructure-scale asset with contracted revenue structure.</li>
+        <li>Long-term energy service agreements with creditworthy counterparties.</li>
+        <li>First-mover positioning in a structurally undersolved market.</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Request investment overview</a>
     </div>
   </div>
 </section>
 
-<!-- FOCUS -->
-<section id="focus">
-  <div class="container">
-    <p class="section-label sans">Status</p>
-    <h2>Current Development Focus</h2>
-    <div class="focus-grid">
-      <div class="focus-item">
-        <p class="focus-num sans">01</p>
-        <p>Corridor feasibility studies across priority deep-sea trade routes</p>
-      </div>
-      <div class="focus-item">
-        <p class="focus-num sans">02</p>
-        <p>Commercial validation with shipping partners and fleet operators</p>
-      </div>
-      <div class="focus-item">
-        <p class="focus-num sans">03</p>
-        <p>Regulatory pre-engagement with relevant national and international bodies</p>
-      </div>
-      <div class="focus-item">
-        <p class="focus-num sans">04</p>
-        <p>Operational modeling of connection protocols and service economics</p>
-      </div>
-      <div class="focus-item">
-        <p class="focus-num sans">05</p>
-        <p>Capital structuring pathways and project finance frameworks</p>
-      </div>
+<!-- ============ SAFETY ============ -->
+<section id="safety" class="section">
+  <div class="section-head">
+    <div class="kicker">Governance</div>
+    <h2>Safety and regulatory engagement first.</h2>
+  </div>
+  <div class="safety-inner">
+    <p>Atomarine is designed around phased validation, structured regulatory engagement, and early insurance dialogue. Each development stage is gated on prior-stage confirmation — technical, institutional, and commercial.</p>
+    <p>The offshore operating model reduces port integration complexity while maintaining institutional oversight at every level. We engage regulators as partners, not obstacles, and we structure our development timeline to reflect that commitment.</p>
+  </div>
+</section>
+
+<!-- ============ FOCUS ============ -->
+<section id="focus" class="section">
+  <div class="section-head">
+    <div class="kicker">Status</div>
+    <h2>Current development focus.</h2>
+  </div>
+  <div class="focus-grid">
+    <div class="focus-item">
+      <span class="num">01</span>
+      <p>Corridor feasibility studies across priority deep-sea trade routes.</p>
+    </div>
+    <div class="focus-item">
+      <span class="num">02</span>
+      <p>Commercial validation with shipping partners and fleet operators.</p>
+    </div>
+    <div class="focus-item">
+      <span class="num">03</span>
+      <p>Regulatory pre-engagement with relevant national and international bodies.</p>
+    </div>
+    <div class="focus-item">
+      <span class="num">04</span>
+      <p>Operational modeling of connection protocols and service economics.</p>
+    </div>
+    <div class="focus-item">
+      <span class="num">05</span>
+      <p>Capital structuring pathways and project finance frameworks.</p>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ============ CONTACT ============ -->
 <section id="contact">
-  <div class="container">
+  <img class="contact-bg" src="assets/photography/leadship-stern.png" alt="">
+  <div class="contact-scrim"></div>
+  <div class="contact-inner">
     <div class="contact-block">
-      <p class="section-label sans">Contact</p>
-      <h2>Engage With Us</h2>
+      <div class="kicker yellow">Contact</div>
+      <h2>Engage with us.</h2>
       <p class="contact-intro">We welcome structured dialogue with shipping operators, government bodies, and institutional investors. All enquiries are handled with appropriate confidentiality.</p>
       <a href="mailto:info@atomarine.co?subject=Atomarine%20Enquiry" class="contact-email">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="1.5"/>
+          <path d="M22 4 L12 13 L2 4"/>
+        </svg>
         info@atomarine.co
       </a>
       <p class="contact-channels">Include your name, organisation, and area of interest<br>(shipping, government, investment, or research).</p>
@@ -547,17 +939,21 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ============ FOOTER ============ -->
 <footer>
-  <div class="footer-brand">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128"><g transform="translate(64, 64)"><g fill="#F5F2ED" stroke="#F5F2ED"><ellipse cx="0" cy="0" rx="52" ry="20" fill="none" stroke-width="3.5" transform="rotate(-18)"/><ellipse cx="0" cy="0" rx="52" ry="20" fill="none" stroke-width="3.5" transform="rotate(42)"/><ellipse cx="0" cy="0" rx="52" ry="20" fill="none" stroke-width="3.5" transform="rotate(-78)"/><circle cx="0" cy="3" r="10" stroke="none"/><circle cx="46.2" cy="-20.4" r="5.5" stroke="none"/><circle cx="-40.4" cy="-31.7" r="5.5" stroke="none"/><circle cx="-7.3" cy="50.8" r="5.5" stroke="none"/></g></g></svg>
-    <span><strong>Atomarine</strong> &nbsp;·&nbsp; Maritime Energy Infrastructure</span>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/logos/symbol-small-light.svg" alt="">
+      <span class="wordmark">Atomarine</span>
+      <span class="mono" style="margin-left: 8px;">Maritime Energy Infrastructure</span>
+    </div>
+    <div class="mono">Preliminary development stage · all information confidential</div>
   </div>
-  <div style="font-size:12px;">
-    Preliminary development stage. All information confidential.
+  <div class="footer-base">
+    <span class="mono">© 2026 Atomarine, Inc.</span>
+    <span class="mono">Cambridge, MA</span>
   </div>
 </footer>
-
 
 </body>
 </html>
