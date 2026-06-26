@@ -299,7 +299,7 @@
   #hero {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 72px);
+    min-height: clamp(560px, 76vh, 770px);
     overflow: hidden;
     display: flex;
     align-items: flex-end;
@@ -309,21 +309,21 @@
     position: absolute; inset: 0; z-index: 0;
   }
   .hero-media img {
-    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    width: 100%; height: 100%; object-fit: cover; object-position: 64% 42%;
   }
   .hero-scrim {
     position: absolute; inset: 0; z-index: 1;
     background:
       linear-gradient(90deg,
-        rgba(10,24,40,0.92) 0%,
-        rgba(10,24,40,0.72) 38%,
-        rgba(10,24,40,0.30) 72%,
+        rgba(10,24,40,0.90) 0%,
+        rgba(10,24,40,0.66) 36%,
+        rgba(10,24,40,0.22) 70%,
         rgba(10,24,40,0)    100%),
       linear-gradient(180deg,
-        rgba(10,24,40,0.55) 0%,
-        rgba(10,24,40,0)    28%,
-        rgba(10,24,40,0)    65%,
-        rgba(5,11,20,0.85)  100%);
+        rgba(10,24,40,0.42) 0%,
+        rgba(10,24,40,0)    26%,
+        rgba(10,24,40,0)    66%,
+        rgba(5,11,20,0.62)  100%);
   }
   .hero-inner {
     position: relative; z-index: 2;
@@ -494,6 +494,48 @@
   }
   .split-prose p + p { margin-top: var(--space-5); }
   .split-prose p:last-child { color: var(--fg-muted); }
+
+  /* ---------- Supported by ---------- */
+  #supported {
+    background: var(--bg-strip);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .supported-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: var(--space-8) var(--page-margin);
+    text-align: center;
+  }
+  .supported-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-wider);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    margin-bottom: var(--space-6);
+  }
+  .logo-row {
+    display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: center;
+    gap: clamp(36px, 6vw, 76px);
+  }
+  .logo-row img {
+    width: auto;
+    opacity: 0.62;
+    transition: opacity var(--dur-base) var(--ease);
+  }
+  .logo-row .logo-yc     { height: 30px; }
+  .logo-row .logo-mit    { height: 25px; }
+  .logo-row .logo-engine { height: 36px; }
+  .logo-row .logo-cto    { height: 34px; }
+  .logo-row img:hover { opacity: 1; }
+  @media (max-width: 700px) {
+    .logo-row .logo-yc     { height: 26px; }
+    .logo-row .logo-mit    { height: 21px; }
+    .logo-row .logo-engine { height: 31px; }
+    .logo-row .logo-cto    { height: 29px; }
+  }
 
   /* ---------- Contact (with render background) ---------- */
   #contact {
@@ -797,6 +839,19 @@
     <div class="split-prose">
       <p>Atomarine generates power at the platform rather than drawing it from the grid. The first platforms run on gas turbines, which are proven, available today, and enough to put real customers on real hardware while the rest of the system is validated at sea.</p>
       <p>As compact marine reactors are licensed, the same platforms move to nuclear generation, which supplies steady, carbon-free electricity without fuel deliveries at the site. The architecture is designed to take either source, so a platform can earn revenue on gas well before the nuclear path is ready.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUPPORTED BY ============ -->
+<section id="supported" aria-label="Supported by">
+  <div class="supported-inner">
+    <p class="supported-label">Supported by</p>
+    <div class="logo-row">
+      <img class="logo-yc"     src="assets/logos/partners/ycombinator.svg"   alt="Y Combinator" loading="lazy">
+      <img class="logo-mit"    src="assets/logos/partners/mit.svg"           alt="MIT" loading="lazy">
+      <img class="logo-engine" src="assets/logos/partners/the-engine.png"    alt="The Engine" loading="lazy">
+      <img class="logo-cto"    src="assets/logos/partners/cleantech-open.png" alt="Cleantech Open" loading="lazy">
     </div>
   </div>
 </section>
