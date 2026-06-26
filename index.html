@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Atomarine deploys the LeadShip, a nuclear-powered vessel offshore, to supply zero-carbon propulsion power to merchant shipping fleets at sea.">
+<meta name="description" content="Atomarine builds the power plant the AI era is missing: manufactured, nuclear-ready compute platforms moored offshore that deliver firm power with no grid queue and no land fight.">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Atomarine — Maritime Energy Infrastructure">
-<meta property="og:description" content="A new offshore energy architecture for deep-sea shipping. Zero-carbon propulsion power delivered at sea.">
+<meta property="og:title" content="Atomarine · Offshore Power & Compute Infrastructure">
+<meta property="og:description" content="Manufactured offshore compute platforms, leased by the kilowatt. Firm, carbon-free power for the AI era, delivered where the grid cannot reach.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://atomarine.co">
-<title>Atomarine — Maritime Energy Infrastructure</title>
+<title>Atomarine · Offshore Power &amp; Compute Infrastructure</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="preload" as="image" href="assets/photography/convoy-hero.png">
+<link rel="preload" as="image" href="assets/renders/campus.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
-     ATOMARINE design tokens — colours, type, space, motion.
-     Lifted from the official LeadShip renders:
+     ATOMARINE design tokens: colours, type, space, motion.
+     Lifted from the official Atomarine renders:
      abyssal navy + warm paper white + chrome-yellow + hull-teal.
      ============================================================ */
   :root {
@@ -295,7 +295,7 @@
     color: var(--fg); cursor: pointer; padding: 8px;
   }
 
-  /* ---------- Hero (full-bleed photography + scrim) ---------- */
+  /* ---------- Hero (full-bleed render + scrim) ---------- */
   #hero {
     position: relative;
     width: 100%;
@@ -347,7 +347,7 @@
     max-width: 56ch;
     margin-bottom: 44px;
   }
-  .hero-desc p + p { margin-top: 6px; }
+  .hero-desc p + p { margin-top: 10px; }
   .cta-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
   .hero-corner {
     position: absolute; right: var(--page-margin); bottom: 24px; z-index: 2;
@@ -382,8 +382,8 @@
     margin-right: 8px; vertical-align: middle;
   }
 
-  /* ---------- Challenge ---------- */
-  #challenge { background: var(--bg); }
+  /* ---------- Problem ---------- */
+  #problem { background: var(--bg); }
   .bullet-list { list-style: none; margin: 0; padding: 0; max-width: 880px; }
   .bullet-list li {
     padding: 22px 0;
@@ -415,8 +415,8 @@
     max-width: 60ch;
   }
 
-  /* ---------- Model ---------- */
-  #model { background: var(--bg-strip); }
+  /* ---------- Platform ---------- */
+  #platform { background: var(--bg-strip); }
   .diagram-wrap {
     margin: var(--space-8) 0 var(--space-7);
     border: 1px solid var(--border);
@@ -457,7 +457,7 @@
   #technology { background: var(--bg); }
   .tech-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -476,8 +476,52 @@
   .tech-item h4 { font-size: 16px; font-weight: 500; color: var(--fg); }
   .tech-item p  { font-size: 14px; color: var(--fg-muted); line-height: 1.6; }
 
-  /* ---------- Audience ---------- */
-  #audience { background: var(--bg-strip); }
+  /* ---------- Power (split + roadmap) ---------- */
+  #power { background: var(--bg-deep); }
+  .split {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-8);
+    align-items: center;
+    margin-top: var(--space-7);
+  }
+  .split .diagram-wrap { margin: 0; }
+  .split-prose {
+    color: var(--fg);
+    font-size: 16.5px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .split-prose p + p { margin-top: var(--space-5); }
+  .split-prose p:last-child { color: var(--fg-muted); }
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: var(--space-8);
+  }
+  .phase {
+    background: var(--bg-deep);
+    padding: 30px 28px 34px;
+    display: flex; flex-direction: column; gap: 10px;
+    border-top: 2px solid var(--border-strong);
+  }
+  .phase .num {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: var(--track-wider); text-transform: uppercase;
+    color: var(--yellow-500);
+  }
+  .phase h4 { font-size: 16px; font-weight: 500; color: var(--fg); }
+  .phase .scale {
+    font-family: var(--font-mono); font-size: 13px;
+    color: var(--teal-400); letter-spacing: 0.03em;
+  }
+  .phase p { font-size: 13.5px; color: var(--fg-muted); line-height: 1.6; }
+
+  /* ---------- Markets ---------- */
+  #markets { background: var(--bg-strip); }
   .audience-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -495,7 +539,11 @@
   .audience-card h3 {
     font-size: 24px; font-weight: 300;
     letter-spacing: var(--track-display);
-    margin-bottom: 24px;
+    margin-bottom: 10px;
+  }
+  .audience-card .who {
+    font-size: 14px; color: var(--fg-subtle);
+    line-height: 1.55; margin-bottom: 22px;
   }
   .aud-list { list-style: none; margin: 0 0 32px; padding: 0; flex: 1; }
   .aud-list li {
@@ -514,24 +562,26 @@
   }
   .audience-card .btn { align-self: flex-start; }
 
-  /* ---------- Safety ---------- */
-  #safety { background: var(--bg); }
-  .safety-inner {
+  /* ---------- Vision (beyond compute) ---------- */
+  #vision { background: var(--bg); }
+
+  /* ---------- Governance ---------- */
+  #governance { background: var(--bg-strip); }
+  .prose-block {
     max-width: 720px;
     color: var(--fg);
     font-size: 17px;
     line-height: 1.7;
     font-weight: 300;
   }
-  .safety-inner p + p { margin-top: var(--space-5); }
-  .safety-inner p { color: var(--fg); }
-  .safety-inner p:last-child { color: var(--fg-muted); }
+  .prose-block p + p { margin-top: var(--space-5); }
+  .prose-block p:last-child { color: var(--fg-muted); }
 
   /* ---------- Focus ---------- */
   #focus { background: var(--bg-deep); }
   .focus-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -552,7 +602,7 @@
   }
   .focus-item p { font-size: 14.5px; color: var(--fg-muted); line-height: 1.55; }
 
-  /* ---------- Contact (with photo background) ---------- */
+  /* ---------- Contact (with render background) ---------- */
   #contact {
     position: relative;
     overflow: hidden;
@@ -595,7 +645,6 @@
     border-bottom: 1px solid var(--border);
     width: 100%;
     transition: color var(--dur-fast) var(--ease);
-    border-bottom: 1px solid var(--border);
   }
   .contact-email:hover { color: var(--yellow-400); border-bottom-color: var(--yellow-500); }
   .contact-email svg { flex-shrink: 0; }
@@ -641,6 +690,7 @@
     .strip-inner { gap: 28px; padding: 18px var(--page-margin); }
     .hero-corner { display: none; }
     .section { padding: 80px var(--page-margin); }
+    .split { grid-template-columns: 1fr; gap: var(--space-6); }
     h1 { font-size: clamp(40px, 8vw, 60px); }
     h2 { font-size: clamp(28px, 5vw, 36px); }
   }
@@ -672,20 +722,20 @@
 <!-- ============ NAV ============ -->
 <nav>
   <div class="nav-inner">
-    <a href="#hero" class="nav-brand" aria-label="Atomarine — home">
+    <a href="#hero" class="nav-brand" aria-label="Atomarine home">
       <img src="assets/logos/symbol-small-light.svg" alt="">
       <span class="wordmark">Atomarine</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#challenge" onclick="document.getElementById('navLinks').classList.remove('open')">Problem</a></li>
-      <li><a href="#model"     onclick="document.getElementById('navLinks').classList.remove('open')">Architecture</a></li>
+      <li><a href="#problem"    onclick="document.getElementById('navLinks').classList.remove('open')">Problem</a></li>
+      <li><a href="#platform"   onclick="document.getElementById('navLinks').classList.remove('open')">Platform</a></li>
       <li><a href="#technology" onclick="document.getElementById('navLinks').classList.remove('open')">Technology</a></li>
-      <li><a href="#audience"  onclick="document.getElementById('navLinks').classList.remove('open')">Partnerships</a></li>
-      <li><a href="#contact"   onclick="document.getElementById('navLinks').classList.remove('open')">Engage</a></li>
+      <li><a href="#markets"    onclick="document.getElementById('navLinks').classList.remove('open')">Markets</a></li>
+      <li><a href="#contact"    onclick="document.getElementById('navLinks').classList.remove('open')">Engage</a></li>
     </ul>
     <div class="nav-right">
       <span class="nav-status"><span class="dot"></span>Pre-seed · Cambridge, MA</span>
-      <a href="#contact" class="btn btn-secondary">Request a briefing</a>
+      <a href="#contact" class="btn btn-secondary">Request the memo</a>
       <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -696,31 +746,31 @@
 <!-- ============ HERO ============ -->
 <section id="hero">
   <div class="hero-media">
-    <img src="assets/photography/convoy-hero.png" alt="Atomarine LeadShip delivering propulsion power to a container-ship convoy via dynamic high-voltage cables">
+    <img src="assets/renders/campus.png" alt="An Atomarine offshore compute campus: floating Compute Atolls interconnected at sea and served by moored nuclear power vessels">
     <div class="hero-scrim"></div>
   </div>
 
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="kicker yellow">Maritime Energy Infrastructure</div>
-      <h1>Zero-Carbon Maritime Energy Infrastructure</h1>
-      <p class="hero-sub">A new offshore energy architecture for deep-sea shipping.</p>
+      <div class="kicker yellow">Offshore Power &amp; Compute Infrastructure</div>
+      <h1>The power plant the AI era is missing.</h1>
+      <p class="hero-sub">Manufactured, nuclear-ready compute platforms, moored offshore and leased by the kilowatt.</p>
       <div class="hero-desc">
-        <p>Atomarine centralizes clean energy generation in the LeadShip, a dedicated offshore vessel, and supplies propulsion power to multiple merchant ships at sea.</p>
-        <p>No onboard nuclear systems for cargo vessels. No fuel switching across the fleet.</p>
-        <p>A scalable pathway to zero-carbon long-haul shipping.</p>
+        <p>AI is no longer bottlenecked by chips. It is bottlenecked by firm power, delivered fast. GPUs ship in months. Grid power takes four to seven years.</p>
+        <p>Atomarine builds standardized floating platforms in shipyards and moors them offshore, where power arrives with the platform. No grid queue. No land fight.</p>
+        <p>Customers bring the servers. We provide everything else.</p>
       </div>
       <div class="cta-row">
-        <a href="#contact" class="btn btn-primary">Explore industry partnership <span class="arrow">→</span></a>
-        <a href="#audience" class="btn btn-ghost">Government engagement</a>
-        <a href="#audience" class="btn btn-ghost">Investor briefing</a>
+        <a href="#contact" class="btn btn-primary">Request the investor memo <span class="arrow">→</span></a>
+        <a href="#platform" class="btn btn-ghost">Explore the platform</a>
+        <a href="#markets" class="btn btn-ghost">Partner with us</a>
       </div>
     </div>
   </div>
 
   <div class="hero-corner">
     <span class="mono yellow">FIG. A.01</span>
-    <span class="mono">CONVOY RENDEZVOUS · INTERNATIONAL WATERS</span>
+    <span class="mono">OFFSHORE COMPUTE CAMPUS · 12 NM</span>
   </div>
 </section>
 
@@ -728,79 +778,79 @@
 <section class="strip" aria-label="Reference figures">
   <div class="strip-inner">
     <div class="strip-cell">
-      <span class="mono">LeadShip output</span>
-      <span class="strip-val yellow"><span class="dot"></span>1,200 MW</span>
+      <span class="mono">AI power shortfall</span>
+      <span class="strip-val yellow"><span class="dot"></span>35 – 49 GW</span>
     </div>
     <div class="strip-cell">
-      <span class="mono">Convoy size</span>
-      <span class="strip-val teal">2 – 5 vessels</span>
+      <span class="mono">Grid power lead time</span>
+      <span class="strip-val teal">4 – 7 yr</span>
     </div>
     <div class="strip-cell">
-      <span class="mono">Cruising</span>
-      <span class="strip-val">15+ kts</span>
+      <span class="mono">Seawater cooling</span>
+      <span class="strip-val">PUE ~1.15</span>
     </div>
     <div class="strip-cell">
-      <span class="mono">Voyage under nuclear power</span>
-      <span class="strip-val">99 %</span>
+      <span class="mono">Flagship campus</span>
+      <span class="strip-val">500 MW</span>
     </div>
     <div class="strip-cell">
-      <span class="mono">Design life</span>
-      <span class="strip-val">60 yr</span>
+      <span class="mono">Infrastructure life</span>
+      <span class="strip-val">20 – 40 yr</span>
     </div>
   </div>
 </section>
 
-<!-- ============ CHALLENGE ============ -->
-<section id="challenge" class="section">
+<!-- ============ PROBLEM ============ -->
+<section id="problem" class="section">
   <div class="section-head">
-    <div class="kicker">Context</div>
-    <h2>Shipping faces a structural energy problem.</h2>
+    <div class="kicker">The Constraint</div>
+    <h2>AI ran out of power before it ran out of chips.</h2>
   </div>
   <ul class="bullet-list">
-    <li><span class="num">01</span><span>Fuel is the largest and most volatile operating cost in deep-sea shipping.</span></li>
-    <li><span class="num">02</span><span>Carbon pricing is accelerating globally, with direct implications for fleet economics.</span></li>
-    <li><span class="num">03</span><span>Slow steaming reduces revenue and limits schedule flexibility across trade corridors.</span></li>
-    <li><span class="num">04</span><span>Alternative fuels introduce new infrastructure dependencies without resolving the core problem.</span></li>
+    <li><span class="num">01</span><span>A new generation of GPUs can be bought and installed in months. Connecting a large facility to the grid now takes four to seven years.</span></li>
+    <li><span class="num">02</span><span>Forecasters see a firm-power shortfall of 35 to 49 gigawatts by 2030, and roughly 56 gigawatts of projects are already leaving the grid to build their own generation.</span></li>
+    <li><span class="num">03</span><span>On land, cooling and water consume 10 to 40 percent of a data center's power, along with millions of gallons of freshwater every year.</span></li>
+    <li><span class="num">04</span><span>Every land campus locks billions of dollars to one fixed site, behind interconnection queues, zoning fights, and multi-year waits for transformers and switchgear.</span></li>
   </ul>
-  <p class="conclusion">The industry lacks a structural energy solution.</p>
+  <p class="conclusion">The grid took a century to build. It cannot expand at the speed of AI.</p>
 </section>
 
-<!-- ============ MODEL ============ -->
-<section id="model" class="section">
+<!-- ============ PLATFORM ============ -->
+<section id="platform" class="section">
   <div class="section-head">
-    <div class="kicker">Architecture</div>
-    <h2>A new energy architecture.</h2>
-    <p class="lede">Atomarine deploys the LeadShip, a dedicated nuclear-powered vessel operating in international waters. Merchant vessels connect offshore and receive propulsion power without carrying nuclear systems onboard.</p>
+    <div class="kicker">The Platform</div>
+    <h2>We move compute offshore.</h2>
+    <p class="lede">Atomarine manufactures standardized floating platforms, the Compute Atolls, in shipyards and moors them about twelve nautical miles out. Each one is a powered, cooled, connected white-space shell. Customers install their own GPUs. We own and operate the long-life infrastructure underneath them.</p>
   </div>
 
   <div class="diagram-wrap">
-    <img src="assets/concept.jpg" alt="Atomarine LeadShip supplying propulsion power to multiple merchant ships at sea via dynamic cable connections" loading="lazy">
+    <img src="assets/renders/compute-atoll.png" alt="A single Atomarine Compute Atoll at sea, a standardized floating platform carrying rows of serviceable compute halls" loading="lazy">
   </div>
   <div class="diagram-cap">
     <span class="mono" style="color: var(--yellow-500);">FIG. B.01</span>
-    <span class="mono">Hub-and-spoke offshore power transfer</span>
+    <span class="mono">Compute Atoll · 75 – 100 MW standardized hull</span>
   </div>
 
   <div class="key-points">
     <div class="key-point">
-      <span class="num">— 01</span>
-      <h4>Zero-carbon propulsion</h4>
-      <p>During connection, merchant vessels operate on clean electrical power with no combustion emissions.</p>
+      <span class="num">01</span>
+      <h4>Power as a service</h4>
+      <p>Customers lease powered, cooled, connected capacity by the kilowatt under ten to fifteen year take-or-pay contracts. We carry the infrastructure risk. They keep the fast-depreciating GPUs.</p>
     </div>
     <div class="key-point">
-      <span class="num">— 02</span>
-      <h4>Fleet compatibility</h4>
-      <p>Hybrid PTO/PTI retrofit enables existing vessels to participate without full redesign.</p>
+      <span class="num">02</span>
+      <h4>No grid queue, no land fight</h4>
+      <p>Siting offshore removes the interconnection queue entirely and trades zoning and community opposition for a federal permitting path we choose and map openly.</p>
     </div>
     <div class="key-point">
-      <span class="num">— 03</span>
-      <h4>Solving regulatory roadblocks</h4>
-      <p>The LeadShip operates in international waters, reducing port integration complexity.</p>
+      <span class="num">03</span>
+      <h4>Manufactured, not constructed</h4>
+      <p>Shipyards build the platforms repeatedly and refine them over time. Standardization, rather than any single hull, is the moat that bespoke land construction cannot follow.</p>
     </div>
     <div class="key-point">
-      <span class="num">— 04</span>
-      <h4>Economies of scale</h4>
-      <p>A single LeadShip can serve multiple vessels across a corridor, compounding utilization economics.</p>
+      <span class="num">04</span>
+      <h4>Cooled by the ocean</h4>
+      <p>A closed seawater loop replaces chillers, cooling towers, and the freshwater draw, taking the largest operating cost on land toward nearly free at sea.</p>
     </div>
   </div>
 </section>
@@ -809,82 +859,182 @@
 <section id="technology" class="section">
   <div class="section-head">
     <div class="kicker">Foundation</div>
-    <h2>Built on established industrial technologies.</h2>
-    <p class="lede">The Atomarine model is assembled from proven industrial components. No single element requires first-of-kind development.</p>
+    <h2>Assembled from proven industrial parts.</h2>
+    <p class="lede">No single element is first-of-kind. The advance is the integration: shipyard manufacturing, marine cooling, sealed compute halls, and nuclear-ready power, brought together into one repeatable platform.</p>
   </div>
   <div class="tech-grid">
     <div class="tech-item">
       <span class="num">01</span>
-      <h4>Gen III+ Pressurized Water Reactor</h4>
-      <p>Mature reactor technology with established regulatory precedent and decades of operational data across commercial and naval applications.</p>
+      <h4>Compute Atolls</h4>
+      <p>Standardized floating hulls of 75 to 100 megawatts each, towable and independently replaceable, so a campus scales in palatable increments rather than one immovable build.</p>
     </div>
     <div class="tech-item">
       <span class="num">02</span>
-      <h4>Offshore Dynamic Cable Systems</h4>
-      <p>Dynamic power cable technology with extensive deployment history in offshore wind and subsea industrial installations.</p>
+      <h4>AtmoSeal compute halls</h4>
+      <p>Our flagship intellectual property: watertight, dehumidified, oxygen-reduced halls that capture offshore reliability gains while staying fully serviceable for GPU refresh in place.</p>
     </div>
     <div class="tech-item">
       <span class="num">03</span>
-      <h4>Hybrid PTO/PTI Integration</h4>
-      <p>Power take-out / power take-in shaft systems are a standard component of modern hybrid marine propulsion architectures.</p>
+      <h4>Seawater cooling</h4>
+      <p>A titanium and cupronickel closed loop with no chillers and no cooling towers, for a modeled PUE around 1.15 and almost no freshwater use.</p>
     </div>
     <div class="tech-item">
       <span class="num">04</span>
-      <h4>Naval Nuclear Operations</h4>
-      <p>Decades of operational experience in naval nuclear propulsion provide a robust baseline for offshore marine reactor management.</p>
+      <h4>Nuclear-ready power</h4>
+      <p>Each power vessel pairs two 75-megawatt reactors for about 150 megawatts, a deliberately small block chosen for redundancy, fine capacity steps, and shipyard repeatability.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">05</span>
+      <h4>The Relief Fleet</h4>
+      <p>Power vessels are pooled across the network and reach any campus within about a day, turning nuclear's long maintenance outages into a solved logistics problem.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">06</span>
+      <h4>Subsea fiber</h4>
+      <p>A near-shore fiber spur lands sub-millisecond latency at terabit scale, keeping Atomarine in reach of the largest and fastest-growing market, inference.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ AUDIENCE ============ -->
-<section id="audience" class="section">
+<!-- ============ POWER ============ -->
+<section id="power" class="section">
   <div class="section-head">
-    <div class="kicker">Partnerships</div>
-    <h2>Who it's for.</h2>
+    <div class="kicker yellow">Power</div>
+    <h2>Gas first. Nuclear at scale.</h2>
+  </div>
+
+  <div class="split">
+    <div class="diagram-wrap">
+      <img src="assets/renders/power-vessel.png" alt="An Atomarine power vessel at sea, carrying compact marine reactors that supply a moored offshore compute campus" loading="lazy">
+    </div>
+    <div class="split-prose">
+      <p>We start on gas because the market pain is here now, and the platform must earn its credibility before any reactor capital is committed. A near-shore, gas-firmed demonstrator proves the platform, the cooling, the connectivity, the AtmoSeal halls, and the contracts, and it earns revenue years ahead of nuclear.</p>
+      <p>Nuclear is the scale and margin unlock: firm, carbon-free power, multi-year fuel cycles, and no fuel logistics at the load. That path is now real. The first marine-nuclear class rules arrived in 2024, two-reactor floating platforms have already earned Approvals in Principle, and the United States finalized its risk-informed Part 53 licensing framework in 2026.</p>
+      <p>The architecture is deliberately power-source-agnostic. We add marine reactors only once they are licensed and costed, into a platform that was earning from gas long before.</p>
+    </div>
+  </div>
+
+  <div class="roadmap">
+    <div class="phase">
+      <span class="num">Phase 0 – 1</span>
+      <h4>Demonstrator</h4>
+      <span class="scale">10 – 50 MW · gas</span>
+      <p>Proves the platform, seawater cooling, fiber, marine operations, the AtmoSeal hall, and the first commercial lease.</p>
+    </div>
+    <div class="phase">
+      <span class="num">Phase 2</span>
+      <h4>First commercial campus</h4>
+      <span class="scale">250 MW · nuclear-ready</span>
+      <p>Proves revenue, uptime, the operating model, and a permitting pathway that repeats.</p>
+    </div>
+    <div class="phase">
+      <span class="num">Phase 3</span>
+      <h4>First nuclear</h4>
+      <span class="scale">500 MW · marine reactors</span>
+      <p>Reactors integrated into a platform already proven, once licensing and delivered cost are known.</p>
+    </div>
+    <div class="phase">
+      <span class="num">Phase 4</span>
+      <h4>Fleet scale</h4>
+      <span class="scale">2 GW and beyond</span>
+      <p>Firm, carbon-free gigawatts at sea, served by a shared fleet and a repeatable build.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKETS ============ -->
+<section id="markets" class="section">
+  <div class="section-head">
+    <div class="kicker">Markets</div>
+    <h2>Who we serve.</h2>
   </div>
   <div class="audience-grid">
     <div class="audience-card">
       <span class="mono">Sector · 01</span>
-      <h3>Shipping companies</h3>
+      <h3>AI operators</h3>
+      <p class="who">Neoclouds, hyperscalers, colocation developers, and sovereign AI programs.</p>
       <ul class="aud-list">
-        <li>Reduce fuel cost volatility across the fleet.</li>
-        <li>Manage carbon exposure ahead of pricing escalation.</li>
-        <li>Restore speed flexibility without fuel cost penalty.</li>
+        <li>GPU-rich and power-starved, they need firm capacity faster than the grid can deliver it.</li>
+        <li>They already pay above 100 dollars per megawatt hour for firm nuclear and record colocation rents.</li>
+        <li>Power is a fraction of their cost. Idle GPUs are what bleed money.</li>
       </ul>
-      <a href="#contact" class="btn btn-primary">Discuss pilot corridor</a>
+      <a href="#contact" class="btn btn-primary">Reserve capacity</a>
     </div>
     <div class="audience-card">
       <span class="mono">Sector · 02</span>
-      <h3>Governments</h3>
+      <h3>Partners &amp; governments</h3>
+      <p class="who">Shipyards, classification societies, reactor vendors, and host nations.</p>
       <ul class="aud-list">
-        <li>Strategic decarbonization corridor infrastructure.</li>
-        <li>Energy independence from fossil fuel imports.</li>
-        <li>Industrial leadership in maritime energy transition.</li>
+        <li>A repeatable maritime and nuclear pathway, mapped openly rather than fought site by site.</li>
+        <li>Industrial leadership in firm, carbon-free power built at home.</li>
+        <li>Capacity sited outside congested grids and land politics.</li>
       </ul>
-      <a href="#contact" class="btn btn-primary">Initiate strategic dialogue</a>
+      <a href="#contact" class="btn btn-primary">Build with us</a>
     </div>
     <div class="audience-card">
       <span class="mono">Sector · 03</span>
       <h3>Investors</h3>
+      <p class="who">Infrastructure-scale assets with contracted, long-dated revenue.</p>
       <ul class="aud-list">
-        <li>Infrastructure-scale asset with contracted revenue structure.</li>
-        <li>Long-term energy service agreements with creditworthy counterparties.</li>
-        <li>First-mover positioning in a structurally undersolved market.</li>
+        <li>Ten to fifteen year take-or-pay leases with creditworthy tenants.</li>
+        <li>Long-life infrastructure on a manufacturing cost curve, not a bespoke one.</li>
+        <li>First-mover position in a structurally undersupplied market.</li>
       </ul>
-      <a href="#contact" class="btn btn-primary">Request investment overview</a>
+      <a href="#contact" class="btn btn-primary">Request the memo</a>
     </div>
   </div>
 </section>
 
-<!-- ============ SAFETY ============ -->
-<section id="safety" class="section">
+<!-- ============ VISION ============ -->
+<section id="vision" class="section">
+  <div class="section-head">
+    <div class="kicker yellow">The Long Game</div>
+    <h2>Compute is the beachhead. The destination is the global standard for power offshore.</h2>
+    <p class="lede">The asset we are building is a manufactured, firm, mobile source of power at sea, and that is exactly what every offshore industry lacks today. Once the platform and the regulatory path are proven for data centers, the same vessels and the same Relief Fleet serve the rest with little redesign.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item">
+      <span class="num">01</span>
+      <h4>Compute</h4>
+      <p>Our first and highest-paying market, and the one that funds the platform and the learning curve.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">02</span>
+      <h4>Coastal grids</h4>
+      <p>Firm capacity for constrained shorelines and islands, with no new transmission to build.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">03</span>
+      <h4>Shipping &amp; ports</h4>
+      <p>Clean shore power and at-sea bunkering as the maritime sector decarbonizes.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">04</span>
+      <h4>FPSOs &amp; offshore energy</h4>
+      <p>Firm, carbon-free power in place of the gas turbines on production platforms.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">05</span>
+      <h4>Deep sea mining</h4>
+      <p>Power for processing vessels and equipment far from any grid.</p>
+    </div>
+    <div class="tech-item">
+      <span class="num">06</span>
+      <h4>Defense &amp; logistics</h4>
+      <p>Energy for forward deployments and recharging for autonomous vessels and drones at sea.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOVERNANCE ============ -->
+<section id="governance" class="section">
   <div class="section-head">
     <div class="kicker">Governance</div>
-    <h2>Safety and regulatory engagement first.</h2>
+    <h2>Regulator-first, and honest about the path.</h2>
   </div>
-  <div class="safety-inner">
-    <p>Atomarine is designed around phased validation, structured regulatory engagement, and early insurance dialogue. Each development stage is gated on prior-stage confirmation — technical, institutional, and commercial.</p>
-    <p>The offshore operating model reduces port integration complexity while maintaining institutional oversight at every level. We engage regulators as partners, not obstacles, and we structure our development timeline to reflect that commitment.</p>
+  <div class="prose-block">
+    <p>We do not pretend the ocean removes regulation. It replaces thousands of bespoke local land fights with a single maritime and nuclear pathway we can specialize in and map openly. We run two tracks in parallel: classification with ABS, moving from new-technology qualification toward class approval, and nuclear licensing with the NRC, toward a construction permit under the Part 53 framework that became effective in 2026.</p>
+    <p>Every stage is gated on the one before it. We engage regulators and insurers from the first day, we put no reactor capital at risk before licensing and cost are known, and we prove the entire platform on gas before a single reactor goes to sea. Safety is the precondition for the company, not a feature of it.</p>
   </div>
 </section>
 
@@ -892,41 +1042,46 @@
 <section id="focus" class="section">
   <div class="section-head">
     <div class="kicker">Status</div>
-    <h2>Current development focus.</h2>
+    <h2>What the pre-seed builds.</h2>
+    <p class="lede">We are raising a pre-seed to convert the largest unknowns into priced, contracted, financeable facts. The round funds evidence, not a build.</p>
   </div>
   <div class="focus-grid">
     <div class="focus-item">
       <span class="num">01</span>
-      <p>Corridor feasibility studies across priority deep-sea trade routes.</p>
+      <p>A bankable techno-economic and feasibility study for the platform, cooling, mooring, and cost stack.</p>
     </div>
     <div class="focus-item">
       <span class="num">02</span>
-      <p>Commercial validation with shipping partners and fleet operators.</p>
+      <p>An ABS Approval in Principle and a classification road map for the platform and future nuclear integration.</p>
     </div>
     <div class="focus-item">
       <span class="num">03</span>
-      <p>Regulatory pre-engagement with relevant national and international bodies.</p>
+      <p>An NRC pre-application and a reactor-vendor down-select in the 75-megawatt class.</p>
     </div>
     <div class="focus-item">
       <span class="num">04</span>
-      <p>Operational modeling of connection protocols and service economics.</p>
+      <p>A first anchor-tenant letter of intent, with capacity, pricing, and timing.</p>
     </div>
     <div class="focus-item">
       <span class="num">05</span>
-      <p>Capital structuring pathways and project finance frameworks.</p>
+      <p>An AtmoSeal provisional patent and a serviceable-hall prototype plan.</p>
+    </div>
+    <div class="focus-item">
+      <span class="num">06</span>
+      <p>The first senior hires in naval architecture, reactor integration, and regulatory counsel.</p>
     </div>
   </div>
 </section>
 
 <!-- ============ CONTACT ============ -->
 <section id="contact">
-  <img class="contact-bg" src="assets/photography/leadship-stern.png" alt="">
+  <img class="contact-bg" src="assets/renders/campus.png" alt="">
   <div class="contact-scrim"></div>
   <div class="contact-inner">
     <div class="contact-block">
-      <div class="kicker yellow">Contact</div>
-      <h2>Engage with us.</h2>
-      <p class="contact-intro">We welcome structured dialogue with shipping operators, government bodies, and institutional investors. All enquiries are handled with appropriate confidentiality.</p>
+      <div class="kicker yellow">Engage</div>
+      <h2>Build the next layer of energy infrastructure with us.</h2>
+      <p class="contact-intro">We welcome structured conversations with AI operators, shipyards and reactor partners, host governments, and institutional investors. Every enquiry is handled with appropriate confidentiality.</p>
       <a href="mailto:info@atomarine.co?subject=Atomarine%20Enquiry" class="contact-email">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="2" y="4" width="20" height="16" rx="1.5"/>
@@ -934,7 +1089,7 @@
         </svg>
         info@atomarine.co
       </a>
-      <p class="contact-channels">Include your name, organisation, and area of interest<br>(shipping, government, investment, or research).</p>
+      <p class="contact-channels">Tell us your name, your organization, and where you fit: compute, partnership, government, or investment.</p>
     </div>
   </div>
 </section>
@@ -945,9 +1100,9 @@
     <div class="footer-brand">
       <img src="assets/logos/symbol-small-light.svg" alt="">
       <span class="wordmark">Atomarine</span>
-      <span class="mono" style="margin-left: 8px;">Maritime Energy Infrastructure</span>
+      <span class="mono" style="margin-left: 8px;">Offshore Power &amp; Compute Infrastructure</span>
     </div>
-    <div class="mono">Preliminary development stage · all information confidential</div>
+    <div class="mono">Pre-seed stage · all information confidential</div>
   </div>
   <div class="footer-base">
     <span class="mono">© 2026 Atomarine, Inc.</span>
