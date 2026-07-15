@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Atomarine designs and manufactures floating data center platforms, cooled by seawater and powered on the platform, built in shipyards and deployed in coastal waters.">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#081521">
 <meta property="og:title" content="Atomarine · Offshore Power & Compute Infrastructure">
 <meta property="og:description" content="Floating data center platforms, built in shipyards and deployed at sea. Cooled by seawater, powered on the platform, and connected to shore.">
 <meta property="og:type" content="website">
@@ -14,865 +15,842 @@
 <link rel="preload" as="image" href="assets/renders/campus.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,50..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
-     ATOMARINE design tokens: colours, type, space, motion.
-     Lifted from the official Atomarine renders:
-     abyssal navy + warm paper white + chrome-yellow + hull-teal.
+     ATOMARINE — design tokens
+     Source: Atomarine Design System (claude.ai/design).
+     Deep navy foundation, steel neutrals, one Signal Yellow accent.
+     Dark (abyss) surfaces are the default for brand/marketing.
      ============================================================ */
   :root {
-    --abyss-900: #050B14;
-    --abyss-800: #081220;
-    --abyss-700: #0A1828;
-    --abyss-600: #0B1D33;
-    --abyss-500: #102A48;
-    --abyss-400: #1A3A5C;
-    --abyss-300: #2A4E72;
+    --am-abyss: #081521;
+    --am-navy-900: #0B1D2A;
+    --am-navy-800: #10263C;
+    --am-navy-700: #16324C;
+    --am-navy-600: #1F4265;
+    --am-navy-300: #6E92B0;
+    --am-navy-200: #A3BCCE;
+    --am-navy-100: #D2DFE8;
 
-    --paper-50:  #FCFBF6;
-    --paper-100: #F4F1E8;
-    --paper-200: #E8E3D4;
-    --paper-300: #CFC8B4;
-    --paper-400: #9A968A;
-    --paper-500: #6A675E;
+    --am-signal: #F2B01D;
+    --am-signal-strong: #DA9C10;
 
-    --haze-200: #C7CDD3;
+    --am-steel-50: #F2F4F3;
 
-    --yellow-500: #F5C518;
-    --yellow-600: #E0AE00;
-    --yellow-400: #FFD54A;
-    --yellow-ink: #1A1400;
+    /* Semantic aliases — dark theme resolved */
+    --surface-page: var(--am-abyss);
+    --surface-card: #0F2233;
+    --surface-sunken: #061019;
+    --text-primary: var(--am-steel-50);
+    --text-secondary: var(--am-navy-200);
+    --text-muted: var(--am-navy-300);
+    --border-strong: #35516B;
+    --border-default: #1F3A50;
+    --border-subtle: #152C3F;
+    --focus-ring: #6FB3E8;
 
-    --teal-500: #00B8C4;
-    --teal-600: #00939E;
-    --teal-400: #3DD4DE;
+    --font-display: "Saira", "IBM Plex Sans", ui-sans-serif, sans-serif;
+    --font-body: "IBM Plex Sans", ui-sans-serif, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-    --bg:           var(--abyss-700);
-    --bg-elevated:  var(--abyss-600);
-    --bg-raised:    var(--abyss-500);
-    --bg-deep:      var(--abyss-900);
-    --bg-strip:     var(--abyss-800);
+    --tracking-display: 0.01em;
+    --tracking-caps: 0.14em;
+    --numeric: "tnum" 1, "lnum" 1;
 
-    --fg:           var(--paper-100);
-    --fg-muted:     #A8B4C4;
-    --fg-subtle:    #6F8091;
-    --fg-disabled:  #4A5868;
-
-    --border:        var(--abyss-400);
-    --border-strong: #27466A;
-
-    --accent:        var(--yellow-500);
-    --accent-ink:    var(--yellow-ink);
-    --accent-2:      var(--teal-400);
-
-    --focus-ring: 0 0 0 2px rgba(0, 184, 196, 0.55);
-
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-
-    --track-tight:   -0.01em;
-    --track-display: -0.02em;
-    --track-wide:    0.08em;
-    --track-wider:   0.14em;
-    --track-brand:   0.32em;
-
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
     --space-4: 16px;
-    --space-5: 24px;
-    --space-6: 32px;
-    --space-7: 48px;
-    --space-8: 64px;
-    --space-9: 96px;
-    --space-10: 128px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-24: 96px;
 
     --radius-sm: 2px;
     --radius-md: 4px;
-    --radius-lg: 6px;
 
-    --ease: cubic-bezier(0.2, 0, 0, 1);
-    --dur-fast: 120ms;
-    --dur-base: 200ms;
+    --ease-surface: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-drift: cubic-bezier(0.19, 1, 0.22, 1);
+    --duration-fast: 120ms;
+    --duration-base: 240ms;
+    --duration-slow: 560ms;
 
-    --content-max: 1280px;
-    --page-margin: 48px;
+    --nav-h: 72px;
+    --content-max: 1200px;
+    --gutter: clamp(24px, 5vw, 64px);
   }
 
   /* ---------- Base ---------- */
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; background: var(--bg); }
+  html { scroll-behavior: smooth; background: var(--surface-page); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
   body {
-    font-family: var(--font-sans);
-    font-size: 16px;
+    font-family: var(--font-body);
+    font-size: 15px;
     line-height: 1.55;
-    color: var(--fg);
-    background: var(--bg);
+    color: var(--text-primary);
+    background: var(--surface-page);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "ss01";
   }
   img { max-width: 100%; display: block; }
-  a { color: var(--teal-400); text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease); }
-  a:hover { border-bottom-color: currentColor; }
-  ::selection { background: var(--yellow-500); color: var(--yellow-ink); }
-  :focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
+  a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-surface);
+  }
+  ::selection { background: var(--am-signal); color: var(--am-navy-900); }
+  :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: var(--radius-sm); }
 
-  /* ---------- Type primitives ---------- */
-  .wordmark {
-    font-family: var(--font-sans);
-    font-weight: 300;
-    letter-spacing: var(--track-brand);
-    text-transform: uppercase;
-    color: var(--fg);
-    font-size: 13px;
-  }
-  .mono {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: var(--track-wider);
-    text-transform: uppercase;
-    color: var(--fg-subtle);
-    font-feature-settings: "tnum";
-  }
-  .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--teal-400);
-    margin-bottom: var(--space-5);
-  }
-  .kicker.yellow { color: var(--yellow-500); }
-  .kicker::before {
-    content: "";
-    display: inline-block;
-    width: 28px; height: 1px;
-    background: currentColor;
-  }
-  h1, h2, h3, h4 { color: var(--fg); margin: 0; text-wrap: balance; }
+  .container { max-width: var(--content-max); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+  section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+  /* ---------- Type ---------- */
+  h1, h2, h3 { margin: 0; color: var(--text-primary); text-wrap: balance; }
   h1 {
-    font-size: clamp(44px, 6.4vw, 84px);
-    font-weight: 200;
-    line-height: 1.02;
-    letter-spacing: -0.025em;
+    font-family: var(--font-display);
+    font-weight: 260;
+    font-stretch: 110%;
+    font-size: clamp(46px, 6.6vw, 86px);
+    line-height: 1.04;
+    letter-spacing: var(--tracking-display);
   }
   h2 {
-    font-size: clamp(32px, 3.6vw, 48px);
+    font-family: var(--font-display);
     font-weight: 300;
-    line-height: 1.08;
-    letter-spacing: var(--track-display);
-  }
-  h3 {
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1.25;
-    letter-spacing: var(--track-tight);
-  }
-  h4 {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.3;
+    font-stretch: 110%;
+    font-size: clamp(31px, 3.7vw, 48px);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-display);
   }
   p { margin: 0; }
 
+  .kicker {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--am-signal);
+    margin: 0 0 var(--space-4);
+  }
+  .kicker-idx { color: var(--text-muted); margin-right: 14px; }
   .lede {
-    font-size: 19px;
-    font-weight: 300;
-    line-height: 1.55;
-    color: var(--fg);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-secondary);
     max-width: 58ch;
   }
-  .body, p.body {
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--fg-muted);
-    max-width: 64ch;
+  .mono-cap {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-feature-settings: var(--numeric);
   }
-  .caption { font-size: 13px; color: var(--fg-subtle); }
 
-  .hairline { border: 0; height: 1px; background: var(--border); margin: 0; }
+  /* The horizon line: hairline that draws across, signal segment at left. */
+  .horizon { position: relative; height: 1px; margin-bottom: var(--space-6); }
+  .horizon::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: var(--border-strong);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 1.2s var(--ease-drift);
+  }
+  .horizon::after {
+    content: "";
+    position: absolute;
+    left: 0; top: -1px;
+    height: 2px;
+    width: 0;
+    background: var(--am-signal);
+    transition: width 0.9s var(--ease-drift) 0.35s;
+  }
+  .horizon.on::before { transform: scaleX(1); }
+  .horizon.on::after { width: 44px; }
+  .horizon:not(.reveal)::before { transform: scaleX(1); }
+  .horizon:not(.reveal)::after { width: 44px; }
 
-  /* ---------- Layout ---------- */
-  .section { max-width: var(--content-max); margin: 0 auto; padding: var(--space-10) var(--page-margin); }
-  .section-head { max-width: 760px; margin-bottom: var(--space-8); }
-  .section-head .lede { margin-top: var(--space-4); color: var(--fg-muted); }
+  /* ---------- Sections ---------- */
+  .section { padding: clamp(96px, 13vh, 148px) 0; }
+  .section-head { max-width: 780px; margin-bottom: var(--space-12); }
+  .section-head h2 { margin-top: 4px; }
+  .section-head .lede { margin-top: var(--space-4); }
 
   /* ---------- Buttons ---------- */
   .btn {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0.005em;
-    border-radius: var(--radius-sm);
-    padding: 13px 24px;
-    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+    height: 48px;
+    padding: 0 26px;
+    border-radius: var(--radius-md);
     border: 1px solid transparent;
-    transition: background var(--dur-fast) var(--ease),
-                color var(--dur-fast) var(--ease),
-                border-color var(--dur-fast) var(--ease);
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    text-decoration: none;
-    line-height: 1;
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-surface),
+                border-color var(--duration-fast) var(--ease-surface),
+                transform var(--duration-base) var(--ease-surface),
+                opacity var(--duration-fast) var(--ease-surface);
   }
-  .btn-primary {
-    background: var(--yellow-500);
-    color: var(--yellow-ink);
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { opacity: 0.9; transform: none; }
+  .btn-signal {
+    background: var(--am-signal);
+    border-color: var(--am-signal);
+    color: var(--am-navy-900);
   }
-  .btn-primary:hover { background: var(--yellow-400); border-bottom-color: transparent; }
-  .btn-secondary {
-    background: transparent;
-    color: var(--fg);
-    border-color: var(--border-strong);
-  }
-  .btn-secondary:hover { border-color: var(--fg); border-bottom-color: var(--fg); }
+  .btn-signal:hover { background: var(--am-signal-strong); border-color: var(--am-signal-strong); }
   .btn-ghost {
-    background: transparent;
-    color: var(--teal-400);
-    border-radius: 0;
-    padding: 13px 0;
-    border-bottom: 1px solid var(--teal-400);
+    background: rgba(8, 21, 33, 0.25);
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-  .btn-ghost:hover { color: var(--teal-400); border-bottom-color: var(--teal-400); }
-  .arrow { font-family: var(--font-mono); font-size: 13px; opacity: 0.85; }
+  .btn-ghost:hover { background: var(--am-navy-800); }
+  .btn-sm { height: 36px; padding: 0 16px; font-size: 14px; }
 
-  /* ---------- Nav ---------- */
-  nav {
-    position: sticky; top: 0; z-index: 30;
-    background: rgba(10, 24, 40, 0.78);
-    backdrop-filter: blur(14px) saturate(1.2);
-    -webkit-backdrop-filter: blur(14px) saturate(1.2);
-    border-bottom: 1px solid var(--border);
+  /* ---------- Scroll progress: a signal hairline crossing the top ---------- */
+  .progress {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--am-signal);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    z-index: 40;
+    pointer-events: none;
+  }
+  @supports (animation-timeline: scroll()) {
+    .progress {
+      animation: progress-grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+  @keyframes progress-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* ---------- Nav: transparent over the hero, glass once sailing ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 30;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.45s var(--ease-surface),
+                border-color 0.45s var(--ease-surface),
+                backdrop-filter 0.45s var(--ease-surface);
+  }
+  .nav.scrolled {
+    background: rgba(8, 21, 33, 0.78);
+    border-bottom-color: var(--border-subtle);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
   }
   .nav-inner {
     max-width: var(--content-max);
     margin: 0 auto;
-    height: 72px;
-    padding: 0 var(--page-margin);
+    padding: 0 var(--gutter);
+    height: var(--nav-h);
     display: flex; align-items: center; gap: 40px;
   }
-  .nav-brand {
-    display: inline-flex; align-items: center; gap: 14px;
-    color: var(--fg); border-bottom: 0;
+  .nav-brand { display: inline-flex; align-items: center; }
+  .nav-brand img { height: 30px; width: auto; }
+  .nav-links {
+    display: flex; gap: 32px;
+    list-style: none; margin: 0; padding: 0;
   }
-  .nav-brand:hover { border-bottom: 0; }
-  .nav-brand img { height: 24px; width: auto; }
-  .nav-links { display: flex; gap: 28px; list-style: none; padding: 0; margin: 0; }
   .nav-links a {
-    font-size: 13px; color: var(--fg-muted);
-    border-bottom: 0; letter-spacing: 0.01em;
+    font-size: 14px;
+    color: var(--text-secondary);
     padding: 6px 0;
   }
-  .nav-links a:hover { color: var(--fg); }
-  .nav-right {
-    margin-left: auto;
-    display: flex; align-items: center; gap: 24px;
-  }
-  .nav-status {
-    font-family: var(--font-mono);
-    font-size: 11px; letter-spacing: var(--track-wider);
-    color: var(--teal-400);
-    text-transform: uppercase;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .nav-status .dot {
-    width: 7px; height: 7px; border-radius: 999px;
-    background: var(--teal-400);
-    box-shadow: 0 0 10px var(--teal-400);
-  }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
   .nav-toggle {
     display: none;
     background: transparent; border: 0;
-    color: var(--fg); cursor: pointer; padding: 8px;
+    color: var(--text-primary); cursor: pointer; padding: 8px;
   }
 
-  /* ---------- Hero (full-bleed render + scrim) ---------- */
-  #hero {
+  /* ---------- Hero: one full-height frame of the campus at sea ---------- */
+  .hero {
     position: relative;
-    width: 100%;
-    min-height: clamp(560px, 76vh, 770px);
-    overflow: hidden;
+    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
-    align-items: flex-end;
-    border-bottom: 1px solid var(--border);
+    overflow: hidden;
   }
-  .hero-media {
-    position: absolute; inset: 0; z-index: 0;
-  }
+  .hero-media { position: absolute; inset: 0; }
   .hero-media img {
-    width: 100%; height: 100%; object-fit: cover; object-position: 64% 42%;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 32%;
+    animation: hero-settle 2.8s var(--ease-drift) both;
+  }
+  @keyframes hero-settle {
+    from { transform: scale(1.07); }
+    to   { transform: none; }
   }
   .hero-scrim {
-    position: absolute; inset: 0; z-index: 1;
+    position: absolute; inset: 0;
     background:
-      linear-gradient(90deg,
-        rgba(10,24,40,0.90) 0%,
-        rgba(10,24,40,0.66) 36%,
-        rgba(10,24,40,0.22) 70%,
-        rgba(10,24,40,0)    100%),
-      linear-gradient(180deg,
-        rgba(10,24,40,0.42) 0%,
-        rgba(10,24,40,0)    26%,
-        rgba(10,24,40,0)    66%,
-        rgba(5,11,20,0.62)  100%);
+      linear-gradient(90deg, rgba(8,21,33,0.90) 0%, rgba(8,21,33,0.66) 38%, rgba(8,21,33,0.16) 74%, rgba(8,21,33,0.04) 100%),
+      linear-gradient(180deg, rgba(8,21,33,0.46) 0%, rgba(8,21,33,0) 30%, rgba(8,21,33,0) 54%, rgba(8,21,33,0.90) 86%, var(--am-abyss) 100%);
   }
   .hero-inner {
-    position: relative; z-index: 2;
+    position: relative;
     max-width: var(--content-max);
     width: 100%;
     margin: 0 auto;
-    padding: 140px var(--page-margin) 96px;
+    padding: 0 var(--gutter);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
   }
-  .hero-content { max-width: 720px; }
-  .hero-sub {
-    font-size: clamp(18px, 1.6vw, 22px);
-    font-weight: 300;
-    color: var(--fg);
-    margin: 8px 0 28px;
-    max-width: 56ch;
+  .hero-content { max-width: 820px; padding: calc(var(--nav-h) + 48px) 0 clamp(40px, 7vh, 84px); }
+  .hero-content h1 { margin-top: 20px; }
+  .hero-lede {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--am-navy-100);
+    max-width: 560px;
+    margin-top: 26px;
   }
-  .hero-desc {
-    color: var(--fg-muted);
-    font-size: 15.5px;
-    line-height: 1.7;
-    max-width: 56ch;
-    margin-bottom: 44px;
-  }
-  .hero-desc p + p { margin-top: 12px; }
-  .cta-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
-  .hero-corner {
-    position: absolute; right: var(--page-margin); bottom: 24px; z-index: 2;
-    display: flex; gap: 18px; align-items: center;
-  }
-  .hero-corner .mono.yellow { color: var(--yellow-500); }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 38px; }
 
-  /* ---------- Fact bar ---------- */
-  .strip {
-    background: var(--bg-strip);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+  /* Hero entrance: each element surfaces in sequence. */
+  @keyframes surface-rise {
+    from { opacity: 0; transform: translateY(26px); filter: blur(10px); }
+    to   { opacity: 1; transform: none; filter: blur(0); }
   }
-  .strip-inner {
-    max-width: var(--content-max);
-    margin: 0 auto;
-    padding: 22px var(--page-margin);
-    display: flex; flex-wrap: wrap; gap: 48px;
+  .hero .kicker   { animation: surface-rise 1.0s var(--ease-drift) 0.15s both; }
+  .hero h1        { animation: surface-rise 1.1s var(--ease-drift) 0.28s both; }
+  .hero-lede      { animation: surface-rise 1.0s var(--ease-drift) 0.46s both; }
+  .hero .cta-row  { animation: surface-rise 1.0s var(--ease-drift) 0.62s both; }
+  .hero-strip     { animation: surface-rise 1.1s var(--ease-drift) 0.9s both; }
+
+  .hero-strip {
+    border-top: 1px solid rgba(53, 81, 107, 0.6);
+    padding: 28px 0 44px;
+    display: flex; flex-wrap: wrap; gap: 48px 72px; align-items: center;
   }
-  .strip-cell { display: flex; flex-direction: column; gap: 6px; }
-  .strip-val {
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-value {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.05;
+    font-feature-settings: var(--numeric);
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .stat-value .stat-unit {
     font-family: var(--font-mono);
-    font-size: 14px; letter-spacing: 0.04em;
-    color: var(--fg);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-left: 2px;
   }
-  .strip-val.yellow { color: var(--yellow-500); }
-  .strip-val.teal   { color: var(--teal-400); }
-  .strip-val .dot {
-    display: inline-block; width: 7px; height: 7px;
-    background: currentColor; border-radius: 999px;
-    box-shadow: 0 0 10px currentColor;
-    margin-right: 8px; vertical-align: middle;
+  .stat-label { font-size: 13px; color: var(--text-muted); }
+  .hero-coord {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    font-feature-settings: var(--numeric);
   }
 
-  /* ---------- Problem ---------- */
-  #problem { background: var(--bg); }
-  .bullet-list { list-style: none; margin: 0; padding: 0; max-width: 880px; }
-  .bullet-list li {
-    padding: 22px 0;
-    border-bottom: 1px solid var(--border);
-    color: var(--fg);
-    font-size: 17px;
-    font-weight: 300;
-    line-height: 1.5;
+  /* ---------- Ledger list (problem) ---------- */
+  .ledger { list-style: none; margin: 0; padding: 0; max-width: 880px; }
+  .ledger li {
     display: grid;
     grid-template-columns: 64px 1fr;
     gap: 16px;
     align-items: start;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--border-default);
   }
-  .bullet-list li:first-child { border-top: 1px solid var(--border); }
-  .bullet-list .num {
+  .ledger li:first-child { border-top: 1px solid var(--border-default); }
+  .ledger .num {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: var(--track-wider);
-    color: var(--yellow-500);
-    text-transform: uppercase;
-    padding-top: 4px;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: var(--tracking-caps);
+    color: var(--text-muted);
+    font-feature-settings: var(--numeric);
+    padding-top: 6px;
   }
-  .conclusion {
-    margin-top: var(--space-7);
-    font-size: 22px; font-weight: 300; line-height: 1.4;
-    color: var(--fg);
-    padding-left: var(--space-5);
-    border-left: 1px solid var(--yellow-500);
-    max-width: 60ch;
+  .ledger p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--am-navy-100);
+    max-width: 66ch;
   }
 
-  /* ---------- Platform ---------- */
-  #platform { background: var(--bg-strip); }
-  .diagram-wrap {
-    margin: var(--space-8) 0 var(--space-7);
-    border: 1px solid var(--border);
+  /* ---------- Full-bleed image bands: renders melt into the page ---------- */
+  .bleed { margin: var(--space-16) 0 0; position: relative; }
+  .bleed-frame {
+    position: relative;
+    height: clamp(420px, 76vh, 780px);
+    overflow: hidden;
+  }
+  .bleed-frame img {
+    position: absolute;
+    left: 0; top: -6%;
+    width: 100%; height: 112%;
+    object-fit: cover; object-position: center;
+  }
+  .bleed-frame::before,
+  .bleed-frame::after {
+    content: "";
+    position: absolute; left: 0; right: 0;
+    height: 22%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .bleed-frame::before { top: 0; background: linear-gradient(180deg, var(--am-abyss) 0%, rgba(8,21,33,0) 100%); }
+  .bleed-frame::after  { bottom: 0; background: linear-gradient(0deg, var(--am-abyss) 0%, rgba(8,21,33,0) 100%); }
+  .bleed-cap { padding-top: 18px; }
+
+  /* ---------- Framed photo (power split) ---------- */
+  .photo { margin: 0; }
+  .photo-frame {
+    position: relative;
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     overflow: hidden;
-    background: var(--bg-deep);
+    background: var(--surface-sunken);
+    aspect-ratio: 3 / 2;
   }
-  .diagram-wrap img {
-    width: 100%; height: auto; display: block;
+  .photo-frame img {
+    position: absolute;
+    left: 0; top: -5%;
+    width: 100%; height: 110%;
+    object-fit: cover;
   }
-  .diagram-cap {
-    display: flex; gap: 14px; align-items: center;
-    margin-top: var(--space-4);
+  .photo figcaption { padding-top: 14px; }
+
+  /* Scroll-driven parallax — progressive enhancement only. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .bleed-frame img {
+        animation: drift linear both;
+        animation-timeline: view();
+        animation-range: entry 0% exit 100%;
+      }
+      .photo-frame img {
+        animation: drift-soft linear both;
+        animation-timeline: view();
+        animation-range: entry 0% exit 100%;
+      }
+      @keyframes drift      { from { transform: translateY(-3.5%); } to { transform: translateY(3.5%); } }
+      @keyframes drift-soft { from { transform: translateY(-2.5%); } to { transform: translateY(2.5%); } }
+    }
   }
 
-  .key-points {
+  /* ---------- Pillars: open columns, no boxes ---------- */
+  .pillars {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: var(--space-7);
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: var(--space-8) clamp(28px, 4vw, 56px);
+    margin-top: var(--space-16);
   }
-  .key-point {
-    background: var(--bg-strip);
-    padding: 28px 28px 32px;
-    display: flex; flex-direction: column; gap: 10px;
+  .pillar {
+    position: relative;
+    border-top: 1px solid var(--border-default);
+    padding-top: 20px;
   }
-  .key-point .num {
-    font-family: var(--font-mono); font-size: 11px;
-    letter-spacing: var(--track-wider); text-transform: uppercase;
-    color: var(--yellow-500);
+  .pillar::after {
+    content: "";
+    position: absolute;
+    top: -1px; left: 0;
+    height: 2px; width: 0;
+    background: var(--am-signal);
+    transition: width 0.5s var(--ease-surface);
   }
-  .key-point h4 { font-size: 16px; font-weight: 500; color: var(--fg); }
-  .key-point p { font-size: 14px; color: var(--fg-muted); line-height: 1.6; }
+  .pillar:hover::after { width: 36px; }
+  .pillar .num {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: var(--tracking-caps);
+    color: var(--text-muted);
+    font-feature-settings: var(--numeric);
+  }
+  .pillar h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.3;
+    margin-top: 12px;
+  }
+  .pillar p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
 
-  /* ---------- Technology ---------- */
-  #technology { background: var(--bg); }
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: var(--space-7);
-  }
-  .tech-item {
-    background: var(--bg-elevated);
-    padding: 36px 32px;
-    display: flex; flex-direction: column; gap: 12px;
-  }
-  .tech-item .num {
-    font-family: var(--font-mono); font-size: 11px;
-    letter-spacing: var(--track-wider); text-transform: uppercase;
-    color: var(--yellow-500);
-  }
-  .tech-item h4 { font-size: 16px; font-weight: 500; color: var(--fg); }
-  .tech-item p  { font-size: 14px; color: var(--fg-muted); line-height: 1.6; }
-
-  /* ---------- Power (image + prose) ---------- */
-  #power { background: var(--bg-deep); }
+  /* ---------- Power split ---------- */
   .split {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: var(--space-8);
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--space-16);
     align-items: center;
-    margin-top: var(--space-7);
   }
-  .split .diagram-wrap { margin: 0; }
   .split-prose {
-    color: var(--fg);
-    font-size: 16.5px;
-    line-height: 1.7;
+    font-size: 17px;
     font-weight: 300;
+    line-height: 1.7;
+    color: var(--am-navy-100);
   }
-  .split-prose p + p { margin-top: var(--space-5); }
-  .split-prose p:last-child { color: var(--fg-muted); }
+  .split-prose p + p { margin-top: var(--space-6); color: var(--text-secondary); }
 
   /* ---------- Supported by ---------- */
-  #supported {
-    background: var(--bg-strip);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .supported-inner {
-    max-width: var(--content-max);
-    margin: 0 auto;
-    padding: var(--space-8) var(--page-margin);
+  .supported {
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: var(--space-16) 0;
     text-align: center;
   }
-  .supported-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: var(--track-wider);
-    text-transform: uppercase;
-    color: var(--fg-subtle);
-    margin-bottom: var(--space-6);
-  }
+  .supported .mono-cap { display: block; margin-bottom: var(--space-8); }
   .logo-row {
     display: flex; flex-wrap: wrap;
     align-items: center; justify-content: center;
     gap: clamp(36px, 6vw, 76px);
   }
-  .logo-row img {
-    width: auto;
-    opacity: 0.62;
-    transition: opacity var(--dur-base) var(--ease);
-  }
-  .logo-row .logo-yc     { height: 30px; }
-  .logo-row .logo-mit    { height: 25px; }
-  .logo-row .logo-engine { height: 36px; }
-  .logo-row .logo-cto    { height: 34px; }
-  .logo-row img:hover { opacity: 1; }
-  @media (max-width: 700px) {
-    .logo-row .logo-yc     { height: 26px; }
-    .logo-row .logo-mit    { height: 21px; }
-    .logo-row .logo-engine { height: 31px; }
-    .logo-row .logo-cto    { height: 29px; }
-  }
+  .logo-row img { width: auto; }
+  .logo-yc     { height: 30px; }
+  .logo-mit    { height: 25px; }
+  .logo-engine { height: 36px; }
+  .logo-cto    { height: 34px; }
 
-  /* ---------- Contact (with render background) ---------- */
-  #contact {
-    position: relative;
-    overflow: hidden;
-    background: var(--bg-deep);
-    border-top: 1px solid var(--border);
-  }
+  /* ---------- Contact ---------- */
+  .contact { position: relative; overflow: hidden; }
   .contact-bg {
-    position: absolute; inset: 0; z-index: 0;
-    width: 100%; height: 100%; object-fit: cover; object-position: center;
-    opacity: 0.45;
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 60%;
   }
   .contact-scrim {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(90deg, rgba(5,11,20,0.94) 0%, rgba(5,11,20,0.78) 60%, rgba(5,11,20,0.45) 100%);
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(8,21,33,0.93) 0%, rgba(8,21,33,0.72) 48%, rgba(8,21,33,0.16) 100%),
+      linear-gradient(180deg, var(--am-abyss) 0%, rgba(8,21,33,0) 32%);
   }
-  .contact-inner {
-    position: relative; z-index: 2;
-    max-width: var(--content-max);
-    margin: 0 auto;
-    padding: var(--space-10) var(--page-margin);
-  }
+  .contact-inner { position: relative; padding: clamp(110px, 16vh, 170px) 0; }
   .contact-block { max-width: 640px; }
   .contact-intro {
-    color: var(--fg);
-    font-size: 18px;
-    line-height: 1.6;
+    font-size: 17px;
     font-weight: 300;
-    margin: var(--space-4) 0 var(--space-7);
+    line-height: 1.65;
+    color: var(--am-navy-100);
+    margin: var(--space-4) 0 var(--space-12);
     max-width: 56ch;
   }
   .contact-email {
     display: inline-flex; align-items: center; gap: 14px;
-    font-family: var(--font-sans);
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--yellow-500);
-    letter-spacing: -0.005em;
-    padding: 22px 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
     width: 100%;
-    transition: color var(--dur-fast) var(--ease);
+    padding: 22px 0;
+    border-top: 1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--am-signal);
+    font-feature-settings: var(--numeric);
+    transition: color var(--duration-fast) var(--ease-surface), padding-left 0.4s var(--ease-surface);
   }
-  .contact-email:hover { color: var(--yellow-400); border-bottom-color: var(--yellow-500); }
+  .contact-email:hover { color: var(--am-signal-strong); padding-left: 10px; }
   .contact-email svg { flex-shrink: 0; }
-  .contact-channels {
-    margin-top: var(--space-5);
-    color: var(--fg-muted);
-    font-size: 14px;
-    line-height: 1.65;
-    max-width: 52ch;
-  }
 
   /* ---------- Footer ---------- */
-  footer {
-    background: var(--bg-strip);
-    border-top: 1px solid var(--border);
-    color: var(--fg-muted);
-  }
+  footer { border-top: 1px solid var(--border-default); background: var(--am-abyss); }
   .footer-inner {
+    padding: var(--space-12) var(--gutter) var(--space-6);
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: var(--space-7) var(--page-margin) var(--space-5);
     display: flex; flex-wrap: wrap; gap: 24px;
-    justify-content: space-between; align-items: center;
+    align-items: center; justify-content: space-between;
   }
-  .footer-brand {
-    display: inline-flex; align-items: center; gap: 14px;
-    color: var(--fg);
-  }
-  .footer-brand img { height: 22px; width: auto; opacity: 0.95; }
+  .footer-brand { display: inline-flex; align-items: center; gap: 18px; }
+  .footer-brand .symbol { height: 30px; width: auto; }
+  .footer-brand .wordmark { height: 13px; width: auto; }
   .footer-base {
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: 18px var(--page-margin);
-    border-top: 1px solid var(--border);
+    padding: 18px var(--gutter);
+    border-top: 1px solid var(--border-subtle);
     display: flex; gap: 24px; flex-wrap: wrap; justify-content: space-between;
+  }
+
+  /* ---------- Motion: things surface, they don't pop ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(7px);
+    transition: opacity 0.95s var(--ease-drift),
+                transform 0.95s var(--ease-drift),
+                filter 0.95s var(--ease-drift);
+    transition-delay: calc(var(--d, 0) * 100ms);
+  }
+  .reveal.on { opacity: 1; transform: none; filter: blur(0); }
+
+  .reveal-media {
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 1.2s var(--ease-drift),
+                transform 1.8s var(--ease-drift);
+    transition-delay: calc(var(--d, 0) * 100ms);
+  }
+  .reveal-media.on { opacity: 1; transform: none; }
+
+  .horizon.reveal, .horizon.reveal.on {
+    opacity: 1; transform: none; filter: none; transition: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .kicker, .hero h1, .hero-lede, .hero .cta-row, .hero-strip,
+    .hero-media img { animation: none; }
+    .reveal, .reveal-media { opacity: 1; transform: none; filter: none; transition: none; }
+    .horizon::before { transform: scaleX(1); transition: none; }
+    .horizon::after { width: 44px; transition: none; }
+    .progress { animation: none; }
+    .btn:hover { transform: none; }
   }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
-    :root { --page-margin: 24px; }
-    .nav-status { display: none; }
-    .nav-links { gap: 18px; }
-    .strip-inner { gap: 28px; padding: 18px var(--page-margin); }
-    .hero-corner { display: none; }
-    .section { padding: 80px var(--page-margin); }
-    .split { grid-template-columns: 1fr; gap: var(--space-6); }
-    h1 { font-size: clamp(40px, 8vw, 60px); }
-    h2 { font-size: clamp(28px, 5vw, 36px); }
+    .split { grid-template-columns: 1fr; gap: var(--space-8); }
+    .hero-coord { display: none; }
+    .hero-strip { gap: 28px 44px; padding-bottom: 36px; }
+    .stat-value { font-size: 26px; }
+    .section { padding: 84px 0; }
+    .bleed-frame { height: clamp(320px, 52vh, 540px); }
+    .contact-inner { padding: 96px 0; }
   }
-  @media (max-width: 700px) {
+  @media (max-width: 760px) {
+    .nav-inner { gap: 20px; }
     .nav-toggle { display: inline-flex; }
     .nav-links {
-      display: none; flex-direction: column;
-      position: absolute; top: 72px; left: 0; right: 0;
-      background: rgba(10,24,40,0.96);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: 12px var(--page-margin);
-      gap: 0;
+      display: none;
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      background: var(--am-abyss);
+      border-bottom: 1px solid var(--border-default);
+      padding: 8px var(--gutter) 16px;
     }
     .nav-links.open { display: flex; }
-    .nav-links a { padding: 14px 0; font-size: 15px; }
-    .nav-right .btn-secondary { padding: 11px 18px; font-size: 13px; }
-    .hero-inner { padding-top: 96px; padding-bottom: 80px; }
-    .hero-sub { font-size: 17px; }
+    .nav-links a { display: block; padding: 14px 0; font-size: 15px; }
+    .nav-right .btn { display: none; }
     .cta-row .btn { width: 100%; justify-content: center; }
-    .bullet-list li { grid-template-columns: 48px 1fr; }
-    .conclusion { font-size: 19px; }
+    .ledger li { grid-template-columns: 48px 1fr; }
+    .ledger p { font-size: 16px; }
     .contact-email { font-size: 18px; }
+    .logo-yc     { height: 26px; }
+    .logo-mit    { height: 21px; }
+    .logo-engine { height: 31px; }
+    .logo-cto    { height: 29px; }
   }
 </style>
 </head>
 <body>
 
+<div class="progress" aria-hidden="true"></div>
+<div id="top-sentinel" aria-hidden="true" style="position:absolute; top:0; left:0; width:1px; height:120px; pointer-events:none;"></div>
+
 <!-- ============ NAV ============ -->
-<nav>
+<header class="nav">
   <div class="nav-inner">
     <a href="#hero" class="nav-brand" aria-label="Atomarine home">
-      <img src="assets/logos/symbol-small-light.svg" alt="">
-      <span class="wordmark">Atomarine</span>
+      <img src="assets/logos/lockup-horizontal-reverse.svg" alt="Atomarine">
     </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#problem"    onclick="document.getElementById('navLinks').classList.remove('open')">Problem</a></li>
-      <li><a href="#platform"   onclick="document.getElementById('navLinks').classList.remove('open')">Platform</a></li>
-      <li><a href="#technology" onclick="document.getElementById('navLinks').classList.remove('open')">Technology</a></li>
-      <li><a href="#power"      onclick="document.getElementById('navLinks').classList.remove('open')">Power</a></li>
-      <li><a href="#contact"    onclick="document.getElementById('navLinks').classList.remove('open')">Contact</a></li>
-    </ul>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#platform">Platform</a></li>
+        <li><a href="#power">Power</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
     <div class="nav-right">
-      <span class="nav-status"><span class="dot"></span>Cambridge, MA</span>
-      <a href="#contact" class="btn btn-secondary">Get in touch</a>
-      <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <a href="#contact" class="btn btn-ghost btn-sm">Contact</a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
   </div>
-</nav>
+</header>
 
 <!-- ============ HERO ============ -->
-<section id="hero">
+<section id="hero" class="hero">
   <div class="hero-media">
     <img src="assets/renders/campus.png" alt="An Atomarine offshore data center campus: floating compute platforms moored at sea and served by power vessels">
-    <div class="hero-scrim"></div>
   </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
 
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="kicker yellow">Offshore Power &amp; Compute Infrastructure</div>
-      <h1>Data centers, built at sea.</h1>
-      <p class="hero-sub">Atomarine designs and manufactures floating platforms that house high-performance computing, cooled by seawater and powered on the platform itself.</p>
-      <div class="hero-desc">
-        <p>The growth of AI has run into a physical limit that has little to do with the chips. A new generation of processors can be installed in months, but connecting a large data center to the grid now takes four to seven years.</p>
-        <p>Building offshore removes that wait, and eases the land, cooling, and water constraints that slow projects ashore. Customers install and run their own servers. Atomarine provides the platform, the cooling, the connection to shore, and the power.</p>
-      </div>
+      <p class="kicker">Offshore power &amp; compute infrastructure</p>
+      <h1>Data centers, at sea.</h1>
+      <p class="hero-lede">Floating platforms for high-performance computing. Cooled by seawater, powered on board, free of the grid queue.</p>
       <div class="cta-row">
-        <a href="#contact" class="btn btn-primary">Get in touch <span class="arrow">→</span></a>
+        <a href="#contact" class="btn btn-signal">Get in touch</a>
         <a href="#platform" class="btn btn-ghost">See the platform</a>
       </div>
     </div>
-  </div>
 
-  <div class="hero-corner">
-    <span class="mono yellow">FIG. A.01</span>
-    <span class="mono">OFFSHORE COMPUTE CAMPUS · 12 NM</span>
-  </div>
-</section>
-
-<!-- ============ FACT BAR ============ -->
-<section class="strip" aria-label="Reference figures">
-  <div class="strip-inner">
-    <div class="strip-cell">
-      <span class="mono">Grid connection wait</span>
-      <span class="strip-val yellow"><span class="dot"></span>4 – 7 yr</span>
-    </div>
-    <div class="strip-cell">
-      <span class="mono">Projected power shortfall</span>
-      <span class="strip-val teal">35 – 49 GW</span>
-    </div>
-    <div class="strip-cell">
-      <span class="mono">Seawater cooling</span>
-      <span class="strip-val">PUE ~1.15</span>
-    </div>
-    <div class="strip-cell">
-      <span class="mono">Infrastructure life</span>
-      <span class="strip-val">20 – 40 yr</span>
+    <div class="hero-strip">
+      <div class="stat">
+        <div class="stat-value">4–7 <span class="stat-unit">yr</span></div>
+        <div class="stat-label">grid connection wait</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">35–49 <span class="stat-unit">GW</span></div>
+        <div class="stat-label">projected shortfall by 2030</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">~1.15 <span class="stat-unit">PUE</span></div>
+        <div class="stat-label">seawater cooling, modeled</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">20–40 <span class="stat-unit">yr</span></div>
+        <div class="stat-label">infrastructure life</div>
+      </div>
+      <div class="hero-coord">42.3736° N, 71.1097° W — CAMBRIDGE, MA</div>
     </div>
   </div>
 </section>
 
 <!-- ============ PROBLEM ============ -->
 <section id="problem" class="section">
-  <div class="section-head">
-    <div class="kicker">The Constraint</div>
-    <h2>AI's bottleneck is power, not chips.</h2>
+  <div class="container">
+    <div class="horizon" aria-hidden="true" data-reveal></div>
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span class="kicker-idx">01</span>The constraint</p>
+      <h2>AI's bottleneck is access to power</h2>
+    </header>
+    <ol class="ledger">
+      <li data-reveal="1"><span class="num">01</span><p>A grid connection takes four to seven years, while new chips install in months. </p></li>
+      <li data-reveal="2"><span class="num">02</span><p>Firm power is projected to fall 35 to 49 gigawatts short by 2030.</p></li>
+      <li data-reveal="3"><span class="num">03</span><p>On land, cooling and water are among a site's largest costs.</p></li>
+      <li data-reveal="4"><span class="num">04</span><p>A land campus locks billions into a single site only on queues and zoning.</p></li>
+    </ol>
   </div>
-  <ul class="bullet-list">
-    <li><span class="num">01</span><span>A new generation of processors can be bought and installed within months. Connecting a large facility to the grid takes four to seven years.</span></li>
-    <li><span class="num">02</span><span>Forecasts point to a firm-power shortfall of 35 to 49 gigawatts by 2030, and a growing share of operators are now building their own generation rather than wait for the grid.</span></li>
-    <li><span class="num">03</span><span>On land, cooling and water are among the largest costs, drawing a significant share of a site's power and millions of gallons of fresh water each year.</span></li>
-    <li><span class="num">04</span><span>A land campus commits billions of dollars to a single location, behind interconnection queues, zoning, and long lead times for transformers and other equipment.</span></li>
-  </ul>
-  <p class="conclusion">Demand for data center electricity is expected to roughly double by 2030, and the supply of firm power has become the binding constraint.</p>
 </section>
 
 <!-- ============ PLATFORM ============ -->
 <section id="platform" class="section">
-  <div class="section-head">
-    <div class="kicker">The Platform</div>
-    <h2>We move compute offshore.</h2>
-    <p class="lede">Atomarine manufactures floating platforms in shipyards as standardized units and moors them in coastal waters, where they can be assembled, serviced, and repositioned much like ships. Customers install and run their own servers, while Atomarine owns and operates the platform underneath them.</p>
+  <div class="container">
+    <div class="horizon" aria-hidden="true" data-reveal></div>
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span class="kicker-idx">02</span>The platform</p>
+      <h2>We move compute offshore.</h2>
+      <p class="lede">70% of the world is water. Humanity can already start taking advantage of it.</p>
+    </header>
   </div>
 
-  <div class="diagram-wrap">
-    <img src="assets/renders/compute-atoll.png" alt="A single Atomarine compute platform at sea, carrying rows of serviceable compute halls" loading="lazy">
-  </div>
-  <div class="diagram-cap">
-    <span class="mono" style="color: var(--yellow-500);">FIG. B.01</span>
-    <span class="mono">Standardized compute platform · 75 – 100 MW</span>
-  </div>
+  <figure class="bleed" data-reveal data-reveal-media>
+    <div class="bleed-frame">
+      <img src="assets/renders/compute-atoll.png" alt="A single Atomarine compute platform at sea, carrying rows of serviceable compute halls" loading="lazy">
+    </div>
+    <figcaption class="container bleed-cap">
+      <span class="mono-cap">Compute barge · Standardized platform · 75–100 MW</span>
+    </figcaption>
+  </figure>
 
-  <div class="key-points">
-    <div class="key-point">
-      <span class="num">01</span>
-      <h4>Power on site</h4>
-      <p>Generation is built into the campus, so capacity does not sit in an interconnection queue waiting for the grid.</p>
-    </div>
-    <div class="key-point">
-      <span class="num">02</span>
-      <h4>Fewer siting conflicts</h4>
-      <p>Coastal waters avoid the competition for land and much of the local opposition that delays large projects ashore.</p>
-    </div>
-    <div class="key-point">
-      <span class="num">03</span>
-      <h4>Built in shipyards</h4>
-      <p>Platforms are produced as standardized units and improved over time, rather than engineered from scratch at every site.</p>
-    </div>
-    <div class="key-point">
-      <span class="num">04</span>
-      <h4>Cooled by seawater</h4>
-      <p>A closed seawater loop replaces chillers and cooling towers and uses very little fresh water, for a modeled PUE around 1.15.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TECHNOLOGY ============ -->
-<section id="technology" class="section">
-  <div class="section-head">
-    <div class="kicker">Foundation</div>
-    <h2>Built from established technology.</h2>
-    <p class="lede">No part of the platform is experimental on its own. The work is in combining marine construction, seawater cooling, sealed computing, and on-platform power into one design that can be built again and again.</p>
-  </div>
-  <div class="tech-grid">
-    <div class="tech-item">
-      <span class="num">01</span>
-      <h4>Standardized platforms</h4>
-      <p>Floating units of roughly 75 to 100 megawatts, towable and replaceable one at a time, so a campus grows in steps instead of a single fixed build.</p>
-    </div>
-    <div class="tech-item">
-      <span class="num">02</span>
-      <h4>Sealed compute halls</h4>
-      <p>Dehumidified, oxygen-reduced halls protect equipment in the marine environment while staying accessible for servicing and hardware upgrades.</p>
-    </div>
-    <div class="tech-item">
-      <span class="num">03</span>
-      <h4>Seawater cooling</h4>
-      <p>A closed loop of corrosion-resistant heat exchangers removes the need for chillers, cooling towers, and most fresh water.</p>
-    </div>
-    <div class="tech-item">
-      <span class="num">04</span>
-      <h4>On-platform power</h4>
-      <p>Electricity is generated at the platform, starting with gas turbines and moving to compact reactors as that technology is licensed.</p>
-    </div>
-    <div class="tech-item">
-      <span class="num">05</span>
-      <h4>Shared power vessels</h4>
-      <p>Generation vessels are shared across sites and can reach a campus within about a day to cover scheduled maintenance.</p>
-    </div>
-    <div class="tech-item">
-      <span class="num">06</span>
-      <h4>Connection to shore</h4>
-      <p>A short subsea fiber link provides low-latency connectivity for the workloads that need it, with satellite as a backup.</p>
+  <div class="container">
+    <div class="pillars">
+      <div class="pillar" data-reveal="1">
+        <span class="num">01</span>
+        <h3>Power on site</h3>
+        <p>Generation is built into the campus. No interconnection queue.</p>
+      </div>
+      <div class="pillar" data-reveal="2">
+        <span class="num">02</span>
+        <h3>Fewer siting conflicts</h3>
+        <p>Coastal waters sidestep the land and permitting fights ashore.</p>
+      </div>
+      <div class="pillar" data-reveal="3">
+        <span class="num">03</span>
+        <h3>Built in shipyards</h3>
+        <p>Standardized units, produced in a centralized location with tight deliverability.</p>
+      </div>
+      <div class="pillar" data-reveal="4">
+        <span class="num">04</span>
+        <h3>Cooled by seawater</h3>
+        <p>A closed seawater loop, no cooling towers, modeled PUE around 1.1.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ POWER ============ -->
 <section id="power" class="section">
-  <div class="section-head">
-    <div class="kicker yellow">Power</div>
-    <h2>Gas first, nuclear later.</h2>
-  </div>
+  <div class="container">
+    <div class="horizon" aria-hidden="true" data-reveal></div>
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span class="kicker-idx">03</span>Power</p>
+      <h2>Gas first, nuclear later.</h2>
+    </header>
 
-  <div class="split">
-    <div class="diagram-wrap">
-      <img src="assets/renders/power-vessel.png" alt="An Atomarine power vessel at sea, generating the electricity for a moored offshore data center campus" loading="lazy">
-    </div>
-    <div class="split-prose">
-      <p>Atomarine generates power at the platform rather than drawing it from the grid. The first platforms run on gas turbines, which are proven, available today, and enough to put real customers on real hardware while the rest of the system is validated at sea.</p>
-      <p>As compact marine reactors are licensed, the same platforms move to nuclear generation, which supplies steady, carbon-free electricity without fuel deliveries at the site. The architecture is designed to take either source, so a platform can earn revenue on gas well before the nuclear path is ready.</p>
+    <div class="split">
+      <figure class="photo" data-reveal data-reveal-media>
+        <div class="photo-frame">
+          <img src="assets/renders/power-vessel.png" alt="An Atomarine power vessel at sea, generating the electricity for a moored offshore data center campus" loading="lazy">
+        </div>
+        <figcaption class="mono-cap">Power vessel · Shared across sites</figcaption>
+      </figure>
+      <div class="split-prose" data-reveal="2">
+        <p>The first platforms run on gas turbines, available on ships already.</p>
+        <p>As compact marine reactors are licensed, the same platforms move to steady, carbon-free nuclear power.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ SUPPORTED BY ============ -->
-<section id="supported" aria-label="Supported by">
-  <div class="supported-inner">
-    <p class="supported-label">Supported by</p>
+<section id="supported" class="supported" aria-label="Supported by">
+  <div class="container">
+    <span class="mono-cap" data-reveal>Supported by</span>
     <div class="logo-row">
-      <img class="logo-yc"     src="assets/logos/partners/ycombinator.svg"   alt="Y Combinator" loading="lazy">
-      <img class="logo-mit"    src="assets/logos/partners/mit.svg"           alt="MIT" loading="lazy">
-      <img class="logo-engine" src="assets/logos/partners/the-engine.png"    alt="The Engine" loading="lazy">
-      <img class="logo-cto"    src="assets/logos/partners/cleantech-open.png" alt="Cleantech Open" loading="lazy">
+      <img class="logo-yc"     src="assets/logos/partners/ycombinator.svg"    alt="Y Combinator"   loading="lazy" data-reveal="1">
+      <img class="logo-mit"    src="assets/logos/partners/mit.svg"            alt="MIT"            loading="lazy" data-reveal="2">
+      <img class="logo-engine" src="assets/logos/partners/the-engine.png"     alt="The Engine"     loading="lazy" data-reveal="3">
+      <img class="logo-cto"    src="assets/logos/partners/cleantech-open.png" alt="Cleantech Open" loading="lazy" data-reveal="4">
     </div>
   </div>
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section id="contact">
-  <img class="contact-bg" src="assets/renders/campus.png" alt="">
-  <div class="contact-scrim"></div>
-  <div class="contact-inner">
-    <div class="contact-block">
-      <div class="kicker yellow">Contact</div>
+<section id="contact" class="contact">
+  <img class="contact-bg" src="assets/renders/campus.png" alt="" aria-hidden="true">
+  <div class="contact-scrim" aria-hidden="true"></div>
+  <div class="container contact-inner">
+    <div class="contact-block" data-reveal>
+      <div class="horizon" aria-hidden="true" data-reveal></div>
+      <p class="kicker"><span class="kicker-idx">04</span>Contact</p>
       <h2>Get in touch.</h2>
-      <p class="contact-intro">We work with AI operators, shipbuilders, energy and nuclear partners, and investors. Tell us who you are and what you are looking for, and we will follow up.</p>
+      <p class="contact-intro">We work with AI operators, shipbuilders, energy partners, and investors.</p>
       <a href="mailto:info@atomarine.co?subject=Atomarine%20Enquiry" class="contact-email">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="2" y="4" width="20" height="16" rx="1.5"/>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="1"/>
           <path d="M22 4 L12 13 L2 4"/>
         </svg>
         info@atomarine.co
       </a>
-      <p class="contact-channels">Please include your name, your organization, and your area of interest.</p>
     </div>
   </div>
 </section>
@@ -881,16 +859,63 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="assets/logos/symbol-small-light.svg" alt="">
-      <span class="wordmark">Atomarine</span>
-      <span class="mono" style="margin-left: 8px;">Offshore Power &amp; Compute Infrastructure</span>
+      <img class="symbol" src="assets/logos/symbol-reverse.svg" alt="">
+      <img class="wordmark" src="assets/logos/wordmark-reverse.svg" alt="Atomarine">
     </div>
+    <span class="mono-cap">Offshore power &amp; compute infrastructure</span>
   </div>
   <div class="footer-base">
-    <span class="mono">© 2026 Atomarine, Inc.</span>
-    <span class="mono">Cambridge, MA</span>
+    <span class="mono-cap">© 2026 Atomarine, Inc.</span>
+    <span class="mono-cap">Cambridge, MA</span>
   </div>
 </footer>
+
+<script>
+(function () {
+  var nav = document.querySelector('.nav');
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Nav gains its glass surface once the page leaves the top.
+  var sentinel = document.getElementById('top-sentinel');
+  if ('IntersectionObserver' in window && sentinel) {
+    new IntersectionObserver(function (entries) {
+      nav.classList.toggle('scrolled', !entries[0].isIntersecting);
+    }).observe(sentinel);
+  } else {
+    nav.classList.add('scrolled');
+  }
+
+  // Reveal on scroll: rise and clear, once, staggered, skipped for reduced motion.
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      var d = el.getAttribute('data-reveal');
+      if (d) el.style.setProperty('--d', d);
+      el.classList.add(el.hasAttribute('data-reveal-media') ? 'reveal-media' : 'reveal');
+      io.observe(el);
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
