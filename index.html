@@ -434,8 +434,7 @@
   .bleed-frame::after  { bottom: 0; background: linear-gradient(0deg, var(--am-abyss) 0%, rgba(8,21,33,0) 100%); }
   .bleed-cap { padding-top: 18px; }
 
-  /* ---------- Framed photo (power split) ---------- */
-  .photo { margin: 0; }
+  /* ---------- Framed photo (power swap panels) ---------- */
   .photo-frame {
     position: relative;
     border: 1px solid var(--border-default);
@@ -450,7 +449,6 @@
     width: 100%; height: 110%;
     object-fit: cover;
   }
-  .photo figcaption { padding-top: 14px; }
 
   /* Scroll-driven parallax — progressive enhancement only. */
   @supports (animation-timeline: view()) {
@@ -588,20 +586,73 @@
     margin-top: 8px;
   }
 
-  /* ---------- Power split ---------- */
-  .split {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: var(--space-16);
-    align-items: center;
+  /* ---------- Power swap: nuclear wipes in over gas while the stage is pinned ----------
+     Scroll drives --p (0 → 1): the nuclear vessel is clipped in from the left
+     behind a signal seam, and the tags/captions hand over at the midpoint. */
+  .section.powerswap { padding-bottom: 0; }
+  .powerswap-track { position: relative; }
+  .powerswap.armed .powerswap-track { height: 220vh; height: 220svh; }
+  .powerswap-stage { position: relative; }
+  .powerswap.armed .powerswap-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .split-prose {
-    font-size: 17px;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--am-navy-100);
+  .powerswap-stage .container { width: 100%; }
+  .powerswap-tags {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-bottom: 14px;
   }
-  .split-prose p + p { margin-top: var(--space-6); color: var(--text-secondary); }
+  .powerswap-tag { transition: color 0.4s var(--ease-surface); }
+  .powerswap-tag.is-active { color: var(--text-primary); }
+  .powerswap-frame {
+    --p: 0;
+    position: relative;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--surface-sunken);
+    height: min(58vh, 60vw);
+    height: min(58svh, 60vw);
+  }
+  .powerswap-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Tomorrow arrives from the right, under its own tag, and takes the berth. */
+  .powerswap-nuclear { clip-path: inset(0 0 0 calc((1 - var(--p)) * 100%)); }
+  .powerswap-seam {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc((1 - var(--p)) * 100%);
+    width: 2px;
+    margin-left: -1px;
+    background: var(--am-signal);
+    /* Fades out at the rails so it never sits on the frame border. */
+    opacity: calc(min(var(--p), 1 - var(--p)) * 20);
+  }
+  .powerswap-caps { display: grid; margin-top: 16px; }
+  .powerswap-cap {
+    grid-area: 1 / 1;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 62ch;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-surface);
+  }
+  .powerswap-cap.is-active { opacity: 1; }
 
   /* ---------- Supported by ---------- */
   .supported {
@@ -722,13 +773,14 @@
     .reveal, .reveal-media { opacity: 1; transform: none; filter: none; transition: none; }
     .horizon::before { transform: scaleX(1); transition: none; }
     .horizon::after { width: 44px; transition: none; }
+    .powerswap-tag, .powerswap-cap { transition: none; }
     .progress { animation: none; }
     .btn:hover { transform: none; }
   }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
-    .split { grid-template-columns: 1fr; gap: var(--space-8); }
+    .powerswap-frame { height: min(52vh, 68vw); height: min(52svh, 68vw); }
     .hero-coord { display: none; }
     .hero-strip { gap: 28px 44px; padding-bottom: 36px; }
     .stat-value { font-size: 26px; }
@@ -929,24 +981,32 @@
 </section>
 
 <!-- ============ POWER ============ -->
-<section id="power" class="section">
+<section id="power" class="section powerswap">
   <div class="container">
     <div class="horizon" aria-hidden="true" data-reveal></div>
     <header class="section-head" data-reveal>
       <p class="kicker"><span class="kicker-idx">04</span>Power</p>
-      <h2>Gas now, nuclear soon.</h2>
+      <h2>Gas today, nuclear tomorrow.</h2>
+      <p class="lede">Each campus is powered by a vessel moored alongside it, so the energy source can change without touching the data halls.</p>
     </header>
+  </div>
 
-    <div class="split">
-      <figure class="photo" data-reveal data-reveal-media>
-        <div class="photo-frame">
-          <img src="assets/renders/power-vessel.webp" alt="An Atomarine power vessel at sea, generating the electricity for a moored offshore data center campus" loading="lazy">
+  <div class="powerswap-track">
+    <div class="powerswap-stage">
+      <div class="container">
+        <div class="powerswap-tags">
+          <span class="mono-cap powerswap-tag is-active" id="swapTagGas">Today · Gas turbines</span>
+          <span class="mono-cap powerswap-tag" id="swapTagNuclear">Tomorrow · Marine reactors</span>
         </div>
-        <figcaption class="mono-cap">Power vessel · Shared across sites</figcaption>
-      </figure>
-      <div class="split-prose" data-reveal="2">
-        <p>The first platforms run on gas turbines, available on ships already.</p>
-        <p>As compact marine reactors are built, the same platforms switch to steady, carbon-free nuclear power.</p>
+        <div class="powerswap-frame" data-reveal data-reveal-media>
+          <img class="powerswap-gas" src="assets/renders/lng_carrier.jpg" alt="An LNG carrier under way at sea, the class of ship behind the first gas power vessels" loading="lazy">
+          <img class="powerswap-nuclear" src="assets/renders/power-vessel.webp" alt="An Atomarine nuclear power vessel at sea, generating the electricity for a moored offshore data center campus" loading="lazy">
+          <div class="powerswap-seam" aria-hidden="true"></div>
+        </div>
+        <div class="powerswap-caps">
+          <p class="powerswap-cap is-active" id="swapCapGas">The first power vessels run on natural gas, proven equipment that already exists.</p>
+          <p class="powerswap-cap" id="swapCapNuclear">As compact marine reactors come online, a nuclear vessel takes the same berth and the campus switches to steady, carbon-free power.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1138,6 +1198,52 @@
       window.addEventListener('scroll', requestScrub, { passive: true });
       window.addEventListener('resize', requestScrub, { passive: true });
       scrub();
+    }
+  }
+
+  // Power swap: the nuclear vessel wipes in over the gas vessel while pinned.
+  var pswap = document.querySelector('.powerswap');
+  if (pswap) {
+    var pTrack = pswap.querySelector('.powerswap-track');
+    var pFrame = pswap.querySelector('.powerswap-frame');
+    var tagGas = document.getElementById('swapTagGas');
+    var tagNuclear = document.getElementById('swapTagNuclear');
+    var capGas = document.getElementById('swapCapGas');
+    var capNuclear = document.getElementById('swapCapNuclear');
+
+    var setSwapState = function (nuclear) {
+      tagGas.classList.toggle('is-active', !nuclear);
+      tagNuclear.classList.toggle('is-active', nuclear);
+      capGas.classList.toggle('is-active', !nuclear);
+      capNuclear.classList.toggle('is-active', nuclear);
+    };
+
+    if (reduced) {
+      // No pinned sequence: present the destination, nuclear at the berth.
+      pFrame.style.setProperty('--p', 1);
+      setSwapState(true);
+    } else {
+      pswap.classList.add('armed');
+      var swapTicking = false;
+      var swapScrub = function () {
+        swapTicking = false;
+        var rect = pTrack.getBoundingClientRect();
+        var vh = window.innerHeight;
+        if (rect.bottom < -200 || rect.top > vh + 200) return;
+        var span = rect.height - vh;
+        if (span <= 0) return;
+        var p = Math.min(1, Math.max(0, -rect.top / span));
+        // Hold at each end so the full image reads before and after the wipe.
+        var u = Math.min(1, Math.max(0, (p - 0.12) / 0.76));
+        pFrame.style.setProperty('--p', u);
+        setSwapState(u >= 0.5);
+      };
+      var requestSwapScrub = function () {
+        if (!swapTicking) { swapTicking = true; requestAnimationFrame(swapScrub); }
+      };
+      window.addEventListener('scroll', requestSwapScrub, { passive: true });
+      window.addEventListener('resize', requestSwapScrub, { passive: true });
+      swapScrub();
     }
   }
 })();
