@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://atomarine.co">
 <title>Atomarine · Offshore Power &amp; Compute Infrastructure</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="preload" as="image" href="assets/renders/campus.png">
+<link rel="preload" as="image" href="assets/renders/campus.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,50..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -461,6 +461,81 @@
     }
   }
 
+  /* ---------- Build-out: the campus assembles as you scroll ---------- */
+  .section.buildout { padding-bottom: 0; }
+  .buildout-track { position: relative; }
+  .buildout-stage {
+    position: relative;
+    height: clamp(420px, 76vh, 780px);
+    overflow: hidden;
+    background: var(--surface-sunken);
+  }
+  .buildout.armed .buildout-track { height: 300vh; height: 300svh; }
+  .buildout.armed .buildout-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+  }
+  .buildout-frames {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+  }
+  .buildout.armed .buildout-frames {
+    width: max(100%, calc(100vh * 1.777));
+    width: max(100%, calc(100svh * 1.777));
+  }
+  .buildout-frames img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    opacity: 0;
+  }
+  .buildout-frames img:first-child,
+  .buildout-frames img.show { opacity: 1; }
+  .buildout-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(8,21,33,0.5) 0%, rgba(8,21,33,0) 20%, rgba(8,21,33,0) 58%, rgba(8,21,33,0.82) 100%);
+  }
+  .buildout-hud {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    z-index: 2;
+  }
+  .buildout-hud .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 32px;
+    padding-bottom: clamp(26px, 4.5vh, 48px);
+  }
+  .hud-ticks { display: flex; gap: 8px; }
+  .hud-ticks span {
+    display: block;
+    width: 34px;
+    height: 2px;
+    background: var(--border-strong);
+    overflow: hidden;
+  }
+  .hud-ticks i {
+    display: block;
+    height: 100%;
+    background: var(--am-signal);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+  }
+  .hud-readout { font-size: 12px; color: var(--text-secondary); }
+  .hud-readout b { font-weight: 600; color: var(--text-primary); }
+
   /* ---------- Pillars: open columns, no boxes ---------- */
   .pillars {
     display: grid;
@@ -670,6 +745,8 @@
     .ledger li { grid-template-columns: 48px 1fr; }
     .ledger p { font-size: 16px; }
     .contact-email { font-size: 18px; }
+    .hud-ticks { gap: 6px; }
+    .hud-ticks span { width: 20px; }
     .logo-yc     { height: 26px; }
     .logo-mit    { height: 21px; }
     .logo-engine { height: 31px; }
@@ -692,6 +769,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#problem">Problem</a></li>
         <li><a href="#platform">Platform</a></li>
+        <li><a href="#scale">Scale</a></li>
         <li><a href="#power">Power</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -708,7 +786,7 @@
 <!-- ============ HERO ============ -->
 <section id="hero" class="hero">
   <div class="hero-media">
-    <img src="assets/renders/campus.png" alt="An Atomarine offshore data center campus: floating compute platforms moored at sea and served by power vessels">
+    <img src="assets/renders/campus.webp" alt="An Atomarine offshore data center campus: floating compute platforms moored at sea and served by power vessels">
   </div>
   <div class="hero-scrim" aria-hidden="true"></div>
 
@@ -725,12 +803,12 @@
 
     <div class="hero-strip">
       <div class="stat">
-        <div class="stat-value">4-5<span class="stat-unit">X</span></div>
-        <div class="stat-label">Faster deployment speed compared to land</div>
+        <div class="stat-value">4–5<span class="stat-unit">×</span></div>
+        <div class="stat-label">faster deployment than on land</div>
       </div>
       <div class="stat">
         <div class="stat-value">1.5 <span class="stat-unit">GW</span></div>
-        <div class="stat-label">Deployed per year</div>
+        <div class="stat-label">deployed per year</div>
       </div>
       <div class="stat">
         <div class="stat-value">~1.1 <span class="stat-unit">PUE</span></div>
@@ -756,7 +834,7 @@
       <li data-reveal="1"><span class="num">01</span><p>A grid connection takes four to seven years, while new chips install in months. </p></li>
       <li data-reveal="2"><span class="num">02</span><p>Firm power is projected to fall 35 to 49 gigawatts short by 2030.</p></li>
       <li data-reveal="3"><span class="num">03</span><p>On land, cooling and water are among a site's largest costs.</p></li>
-      <li data-reveal="4"><span class="num">04</span><p>A land campus locks billions into a single site only on queues and zoning.</p></li>
+      <li data-reveal="4"><span class="num">04</span><p>A land campus locks billions into one site, chosen for queues and zoning rather than demand.</p></li>
     </ol>
   </div>
 </section>
@@ -774,7 +852,7 @@
 
   <figure class="bleed" data-reveal data-reveal-media>
     <div class="bleed-frame">
-      <img src="assets/renders/compute-atoll.png" alt="A single Atomarine compute platform at sea, carrying rows of serviceable compute halls" loading="lazy">
+      <img src="assets/renders/compute-atoll.webp" alt="A single Atomarine compute platform at sea, carrying rows of serviceable compute halls" loading="lazy">
     </div>
     <figcaption class="container bleed-cap">
       <span class="mono-cap">Compute barge · Standardized platform · 75–100 MW</span>
@@ -807,19 +885,53 @@
   </div>
 </section>
 
+<!-- ============ SCALE: pinned build-out sequence ============ -->
+<section id="scale" class="section buildout">
+  <div class="container">
+    <div class="horizon" aria-hidden="true" data-reveal></div>
+    <header class="section-head" data-reveal>
+      <p class="kicker"><span class="kicker-idx">03</span>Scale</p>
+      <h2>The campus grows with demand.</h2>
+      <p class="lede">Each platform is built in a shipyard, towed to site, and moored beside the last. From first barge to 450 megawatts, without breaking ground.</p>
+    </header>
+  </div>
+
+  <div class="buildout-track">
+    <div class="buildout-stage">
+      <div class="buildout-frames" role="img" aria-label="Aerial sequence of an offshore campus growing from one compute platform to six, moored in two rows and served by two power vessels">
+        <img src="assets/renders/expanding_campus/campus_1.webp" alt="" width="1672" height="941" loading="lazy">
+        <img data-src="assets/renders/expanding_campus/campus_2.webp" alt="" width="1672" height="941">
+        <img data-src="assets/renders/expanding_campus/campus_3.webp" alt="" width="1672" height="941">
+        <img data-src="assets/renders/expanding_campus/campus_4.webp" alt="" width="1672" height="941">
+        <img data-src="assets/renders/expanding_campus/campus_5.webp" alt="" width="1672" height="941">
+        <img data-src="assets/renders/expanding_campus/campus_6.webp" alt="" width="1672" height="941">
+      </div>
+      <div class="buildout-scrim" aria-hidden="true"></div>
+      <div class="buildout-hud">
+        <div class="container">
+          <div class="hud-ticks" aria-hidden="true">
+            <span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span>
+          </div>
+          <p class="mono-cap hud-readout">Platforms <b id="hudCount">01</b> / 06 · <b id="hudMw">75</b> MW</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ POWER ============ -->
 <section id="power" class="section">
   <div class="container">
     <div class="horizon" aria-hidden="true" data-reveal></div>
     <header class="section-head" data-reveal>
-      <p class="kicker"><span class="kicker-idx">03</span>Power</p>
+      <p class="kicker"><span class="kicker-idx">04</span>Power</p>
       <h2>Gas now, nuclear soon.</h2>
     </header>
 
     <div class="split">
       <figure class="photo" data-reveal data-reveal-media>
         <div class="photo-frame">
-          <img src="assets/renders/power-vessel.png" alt="An Atomarine power vessel at sea, generating the electricity for a moored offshore data center campus" loading="lazy">
+          <img src="assets/renders/power-vessel.webp" alt="An Atomarine power vessel at sea, generating the electricity for a moored offshore data center campus" loading="lazy">
         </div>
         <figcaption class="mono-cap">Power vessel · Shared across sites</figcaption>
       </figure>
@@ -854,12 +966,12 @@
 
 <!-- ============ CONTACT ============ -->
 <section id="contact" class="contact">
-  <img class="contact-bg" src="assets/renders/campus.png" alt="" aria-hidden="true">
+  <img class="contact-bg" src="assets/renders/campus.webp" alt="" aria-hidden="true">
   <div class="contact-scrim" aria-hidden="true"></div>
   <div class="container contact-inner">
     <div class="contact-block" data-reveal>
       <div class="horizon" aria-hidden="true" data-reveal></div>
-      <p class="kicker"><span class="kicker-idx">04</span>Contact</p>
+      <p class="kicker"><span class="kicker-idx">05</span>Contact</p>
       <h2>Get in touch.</h2>
       <p class="contact-intro">We work with AI operators, developers, shipbuilders, energy partners, and investors.</p>
       <a href="mailto:info@atomarine.co?subject=Atomarine%20Enquiry" class="contact-email">
@@ -935,6 +1047,89 @@
       el.classList.add(el.hasAttribute('data-reveal-media') ? 'reveal-media' : 'reveal');
       io.observe(el);
     });
+  }
+
+  // Build-out: the campus assembles frame by frame while the stage is pinned.
+  var buildout = document.getElementById('scale');
+  if (buildout) {
+    var track = buildout.querySelector('.buildout-track');
+    var frames = buildout.querySelector('.buildout-frames');
+    var frameImgs = frames.querySelectorAll('img');
+    var tickFills = buildout.querySelectorAll('.hud-ticks i');
+    var hudCount = document.getElementById('hudCount');
+    var hudMw = document.getElementById('hudMw');
+    var FRAMES = frameImgs.length;
+    var MW_PER_PLATFORM = 75;
+    var framesLoaded = false;
+
+    var loadFrames = function () {
+      if (framesLoaded) return;
+      framesLoaded = true;
+      frameImgs.forEach(function (img) {
+        var src = img.getAttribute('data-src');
+        if (src) {
+          img.src = src;
+          img.removeAttribute('data-src');
+          if (img.decode) img.decode().catch(function () {});
+        }
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      var pre = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { loadFrames(); pre.disconnect(); }
+      }, { rootMargin: '160% 0px' });
+      pre.observe(buildout);
+    } else {
+      loadFrames();
+    }
+
+    var setHud = function (f) {
+      var count = Math.min(FRAMES, 1 + Math.round(f));
+      hudCount.textContent = (count < 10 ? '0' : '') + count;
+      hudMw.textContent = Math.round(MW_PER_PLATFORM * (1 + f));
+      tickFills.forEach(function (tick, i) {
+        var fill = Math.min(1, Math.max(0, f - (i - 1)));
+        tick.style.transform = 'scaleX(' + fill + ')';
+      });
+    };
+
+    if (reduced) {
+      // No pinned sequence: present the finished campus.
+      loadFrames();
+      frameImgs[FRAMES - 1].classList.add('show');
+      setHud(FRAMES - 1);
+    } else {
+      buildout.classList.add('armed');
+      var smooth = function (u) { return u * u * (3 - 2 * u); };
+      var scrubTicking = false;
+      var scrub = function () {
+        scrubTicking = false;
+        var rect = track.getBoundingClientRect();
+        var vh = window.innerHeight;
+        if (rect.bottom < -200 || rect.top > vh + 200) return;
+        var span = rect.height - vh;
+        if (span <= 0) return;
+        var p = Math.min(1, Math.max(0, -rect.top / span));
+        var f = p * (FRAMES - 1);
+        if (p > 0) loadFrames();
+        for (var i = 1; i < FRAMES; i++) {
+          var s = f - (i - 1);
+          frameImgs[i].style.opacity = smooth(Math.min(1, Math.max(0, (s - 0.15) / 0.7)));
+        }
+        // The camera settles back and drifts across the fleet as it grows.
+        var pan = Math.min(0, window.innerWidth - frames.offsetWidth) * smooth(p);
+        var scale = 1.06 - 0.06 * smooth(p);
+        frames.style.transform = 'translate3d(' + pan + 'px, 0, 0) scale(' + scale + ')';
+        setHud(f);
+      };
+      var requestScrub = function () {
+        if (!scrubTicking) { scrubTicking = true; requestAnimationFrame(scrub); }
+      };
+      window.addEventListener('scroll', requestScrub, { passive: true });
+      window.addEventListener('resize', requestScrub, { passive: true });
+      scrub();
+    }
   }
 })();
 </script>
